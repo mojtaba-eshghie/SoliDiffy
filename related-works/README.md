@@ -6,6 +6,7 @@ This list is an informal summary of all the papers we reviewed during the projec
 - Contains basic information on AST differencing and edit scripts.
 - Presents algorithm used in GumTree.
 - Two phase algorithm that traverses ASTs and finds similarities between them in a few different ways.
+  - Top-down (very straight-forward greedy search mapping between isomorphic subtrees) and Buttom-up phases (finding container mappings and then, recovery mappings)
 - Makes use of previous effective algorithms in parts of the implementation’
 - Main contribution is considering the so-called “move-action” in diffs. This means better results in cases where code blocks have been moved.
 - Move action also increases time-complexity and makes it a NP-hard problem
