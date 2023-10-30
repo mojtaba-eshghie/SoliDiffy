@@ -44,3 +44,13 @@ This list is an informal summary of all the papers we reviewed during the projec
 - Not very relevant to the project
 - It is however an example of a use for AST differencing
 - AST differencing is used here for automated program repair
+
+## [Generating Accurate and Compact Edit Scripts Using Tree Differencing](https://ieeexplore.ieee.org/abstract/document/8530035)
+- Presents a AST-diff tool called IJM (Iterative Java Matcher)
+- Compares itself to GT and another diff tool. Is itself based on GT in many ways.
+- The shortcomings of the other diff tools is described as inaccurate update and move actions.
+- What they seem to mean by this is that when as a developer looking at the diff, you will sometimes find non-sensical edit actions that don't correspond to the actual changes.
+- IJM has three improvements: partial matching, name-aware matching, and merging name nodes.
+- Partial matching means that the scope is limited for each match, for example code within a method is more likely to be moved within that method. Note that not all types of statements are affected
+- Merged name nodes reduces the size of ASTs by merging nodes containing names with their parents. This also prevents faulty mathcings between different types of statements with the same name.
+- Name aware matching makes sure GT is name-aware in bottom up phase, since is otherwise leads to unnecessary move and update actions.
