@@ -54,3 +54,12 @@ This list is an informal summary of all the papers we reviewed during the projec
 - Partial matching means that the scope is limited for each match, for example code within a method is more likely to be moved within that method. Note that not all types of statements are affected
 - Merged name nodes reduces the size of ASTs by merging nodes containing names with their parents. This also prevents faulty mathcings between different types of statements with the same name.
 - Name aware matching makes sure GT is name-aware in bottom up phase, since is otherwise leads to unnecessary move and update actions.
+
+## [A Differential Testing Approach for Evaluating Abstract Syntax Tree Mapping Algorithms](https://ieeexplore.ieee.org/document/9401960)
+- Approach for evaluating the correctness of different AST diff approaches.
+- They state the need for automatic evaluation of AST diffing. 
+- Uses differential testing to find differences between different diffing tools.
+- GumTree, MTDiff, and IJM (previous source in this list) are evaluated.
+- When inconsistencies between diffing approaches are found, the similarities between the matched nodes in all the cases are established and used to determine which match is correcct.
+- However, the process for finding out the similarity between nodes is just a manual review, so the tool is not automatic.
+- Interestingly GumTree is found to have the highest performance, contradicting the findings of the IJM study. 
