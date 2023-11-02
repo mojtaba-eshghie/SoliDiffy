@@ -1,7 +1,3 @@
-JSON AST (compact format):
-
-
-======= ../english-auction.sol =======
 {
   "absolutePath": "../english-auction.sol",
   "exportedSymbols":
