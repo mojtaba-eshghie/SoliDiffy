@@ -64,14 +64,14 @@ This list is an informal summary of all the papers we reviewed during the projec
 - However, the process for finding out the similarity between nodes is just a manual review, so the tool is not automatic.
 - Interestingly GumTree is found to have the highest performance, contradicting the findings of the IJM study. 
 
-## [Pruning the AST with Hunks to Speed up Tree Differencing][(https://ieeexplore.ieee.org/document/8668032)
+## [Pruning the AST with Hunks to Speed up Tree Differencing](https://ieeexplore.ieee.org/document/8668032)
 - Talks about the inefficiency of AST diff compared to line based diff. Line based diff is much faster, especially for larger codebases.
 - Proposes technique that speeds up AST diff by using line based diff.
 - Prunes nodes of ASTs if they do not appear in "hunks" (line based differences.)
 - This reduces the size of the ASTs by omitting unchanged code, and speeds up performance.
 - GumTree saw a 70-75% reduction in runtime with this approach!
 
-## [Beyond GumTree: A Hybrid Approach to Generate Edit Scripts][(https://ieeexplore.ieee.org/document/8816807)
+## [Beyond GumTree: A Hybrid Approach to Generate Edit Scripts](https://ieeexplore.ieee.org/document/8816807)
 - Hybrid approach utilizing both line based and AST diff.
 - Aims to improve accuracy of move and update actions.
 - Splits AST nodes into ones found in line based diff and ones not.
