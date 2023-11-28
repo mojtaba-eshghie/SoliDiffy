@@ -63,3 +63,35 @@ This list is an informal summary of all the papers we reviewed during the projec
 - When inconsistencies between diffing approaches are found, the similarities between the matched nodes in all the cases are established and used to determine which match is correcct.
 - However, the process for finding out the similarity between nodes is just a manual review, so the tool is not automatic.
 - Interestingly GumTree is found to have the highest performance, contradicting the findings of the IJM study. 
+
+## [Pruning the AST with Hunks to Speed up Tree Differencing](https://ieeexplore.ieee.org/document/8668032)
+- Talks about the inefficiency of AST diff compared to line based diff. Line based diff is much faster, especially for larger codebases.
+- Proposes technique that speeds up AST diff by using line based diff.
+- Prunes nodes of ASTs if they do not appear in "hunks" (line based differences.)
+- This reduces the size of the ASTs by omitting unchanged code, and speeds up performance.
+- GumTree saw a 70-75% reduction in runtime with this approach!
+
+## [Beyond GumTree: A Hybrid Approach to Generate Edit Scripts](https://ieeexplore.ieee.org/document/8816807)
+- Hybrid approach utilizing both line based and AST diff.
+- Aims to improve accuracy of move and update actions.
+- Splits AST nodes into ones found in line based diff and ones not.
+- Line matched nodes are only matched with other matched nodes and vice versa.
+- Results are not very interesing, there is an improvement, but only by a few %.
+- The idea of combining line diff with AST diff is interesting.
+
+  ## [HyperAST: Enabling Efficient Analysis of Software Histories at Scale](https://dl.acm.org/doi/10.1145/3551349.3560423)
+  - Proposes a new type of AST data structure to improve analysis.
+  - Adjacent topic to the project, not directly linked but probably relevant enough.
+  - Haven't looked into technical details, but as I understand it it works as follows: Instead of multitudes of ASTs being built for every version of a file, one HyperAST is built instead containing extra information about what nodes were changed and when. 
+  - Compared to Spoon, a java AST builder and analyzer their approach performs orders of magnitudes better in terms of runtime and memory usage.
+
+  ## [Move-Optimized Source Code Tree Differencing](https://dl.acm.org/doi/10.1145/2970276.2970315)
+  - Presents 5 optimizations that can be applied to AST diff algorithms.
+  - Presents algorithm they call MTDIFF, which is based on Changedistiller and uses optimizations.
+  - One of the optimizations already included in Gumtree.
+  - All of the other benefit GT and are directlly related to the matching process.
+  - For example, one optimization helps find move actions for smaller subtrees, which GumTree would've used the RTED algorithm for which does not detect moves.
+  - The results are not very convincing though. The main metric is "% of cases where x algorithm was better" which does not state how much better.
+  - What is stated is that the edit scripts are identical in around 80% of caes when using the optimizations/MTDIFF when compared to GT.
+  - In around 20% of cases GT is improved by optimizations, around 20% of cases MTDIFF outperforms GT with optimizations. 
+    
