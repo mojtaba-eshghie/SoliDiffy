@@ -1,3 +1,6 @@
 [submodule "SIF"]
 	path = SIF
 	url = https://github.com/mojtaba-eshghie/SIF
+[submodule "tree-sitter-parser"]
+	path = tree-sitter-parser
+	url = git@github.com:ViktorAryd/tree-sitter-parser.git
