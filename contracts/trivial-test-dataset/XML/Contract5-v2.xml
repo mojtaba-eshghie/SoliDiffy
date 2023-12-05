@@ -1,0 +1,257 @@
+<tree type="source_file" pos="0" length="690">
+	<tree type="comment" pos="0" length="31" label="// SPDX-License-Identifier: MIT"/>
+	<tree type="pragma_directive" pos="32" length="24">
+		<tree type="pragma" pos="32" length="6" label="pragma"/>
+		<tree type="solidity_pragma_token" pos="39" length="16">
+			<tree type="solidity" pos="39" length="8" label="solidity"/>
+			<tree type="solidity_version_comparison_operator" pos="47" length="2">
+				<tree type="^" pos="47" length="2" label=" ^"/>
+			</tree>
+			<tree type="solidity_version" pos="49" length="6" label="0.8.20"/>
+		</tree>
+	</tree>
+	<tree type="contract_declaration" pos="58" length="632">
+		<tree type="contract" pos="58" length="8" label="contract"/>
+		<tree type="identifier" pos="67" length="5" label="Array"/>
+		<tree type="contract_body" pos="73" length="617">
+			<tree type="state_variable_declaration" pos="79" length="18">
+				<tree type="type_name" pos="79" length="6">
+					<tree type="type_name" pos="79" length="4">
+						<tree type="primitive_type" pos="79" length="4">
+							<tree type="uint" pos="79" length="4" label="uint"/>
+						</tree>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="86" length="6">
+					<tree type="public" pos="86" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="93" length="3" label="arr"/>
+			</tree>
+			<tree type="state_variable_declaration" pos="102" length="31">
+				<tree type="type_name" pos="102" length="6">
+					<tree type="type_name" pos="102" length="4">
+						<tree type="primitive_type" pos="102" length="4">
+							<tree type="uint" pos="102" length="4" label="uint"/>
+						</tree>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="109" length="6">
+					<tree type="public" pos="109" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="116" length="4" label="arr2"/>
+				<tree type="=" pos="121" length="1" label="="/>
+				<tree type="inline_array_expression" pos="123" length="9">
+					<tree type="number_literal" pos="124" length="1" label="1"/>
+					<tree type="number_literal" pos="127" length="1" label="2"/>
+					<tree type="number_literal" pos="130" length="1" label="3"/>
+				</tree>
+			</tree>
+			<tree type="state_variable_declaration" pos="138" length="31">
+				<tree type="type_name" pos="138" length="8">
+					<tree type="type_name" pos="138" length="4">
+						<tree type="primitive_type" pos="138" length="4">
+							<tree type="uint" pos="138" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="number_literal" pos="143" length="2" label="10"/>
+				</tree>
+				<tree type="visibility" pos="147" length="6">
+					<tree type="public" pos="147" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="154" length="14" label="myFixedSizeArr"/>
+			</tree>
+			<tree type="function_definition" pos="175" length="78">
+				<tree type="function" pos="175" length="8" label="function"/>
+				<tree type="identifier" pos="184" length="3" label="get"/>
+				<tree type="parameter" pos="188" length="6">
+					<tree type="type_name" pos="188" length="4">
+						<tree type="primitive_type" pos="188" length="4">
+							<tree type="uint" pos="188" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="193" length="1" label="i"/>
+				</tree>
+				<tree type="visibility" pos="196" length="6">
+					<tree type="public" pos="196" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="203" length="4">
+					<tree type="view" pos="203" length="4" label="view"/>
+				</tree>
+				<tree type="return_type_definition" pos="208" length="14">
+					<tree type="returns" pos="208" length="7" label="returns"/>
+					<tree type="parameter" pos="217" length="4">
+						<tree type="type_name" pos="217" length="4">
+							<tree type="primitive_type" pos="217" length="4">
+								<tree type="uint" pos="217" length="4" label="uint"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+				<tree type="function_body" pos="223" length="30">
+					<tree type="return_statement" pos="233" length="14">
+						<tree type="return" pos="233" length="6" label="return"/>
+						<tree type="array_access" pos="240" length="6">
+							<tree type="identifier" pos="240" length="3" label="arr"/>
+							<tree type="identifier" pos="244" length="1" label="i"/>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="259" length="81">
+				<tree type="function" pos="259" length="8" label="function"/>
+				<tree type="identifier" pos="268" length="6" label="getArr"/>
+				<tree type="visibility" pos="277" length="6">
+					<tree type="public" pos="277" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="284" length="4">
+					<tree type="view" pos="284" length="4" label="view"/>
+				</tree>
+				<tree type="return_type_definition" pos="289" length="23">
+					<tree type="returns" pos="289" length="7" label="returns"/>
+					<tree type="parameter" pos="298" length="13">
+						<tree type="type_name" pos="298" length="6">
+							<tree type="type_name" pos="298" length="4">
+								<tree type="primitive_type" pos="298" length="4">
+									<tree type="uint" pos="298" length="4" label="uint"/>
+								</tree>
+							</tree>
+						</tree>
+						<tree type="memory" pos="305" length="6" label="memory"/>
+					</tree>
+				</tree>
+				<tree type="function_body" pos="313" length="27">
+					<tree type="return_statement" pos="323" length="11">
+						<tree type="return" pos="323" length="6" label="return"/>
+						<tree type="identifier" pos="330" length="3" label="arr"/>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="346" length="61">
+				<tree type="function" pos="346" length="8" label="function"/>
+				<tree type="identifier" pos="355" length="4" label="push"/>
+				<tree type="parameter" pos="360" length="6">
+					<tree type="type_name" pos="360" length="4">
+						<tree type="primitive_type" pos="360" length="4">
+							<tree type="uint" pos="360" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="365" length="1" label="i"/>
+				</tree>
+				<tree type="visibility" pos="368" length="6">
+					<tree type="public" pos="368" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="375" length="32">
+					<tree type="expression_statement" pos="385" length="16">
+						<tree type="call_expression" pos="385" length="15">
+							<tree type="member_expression" pos="385" length="8">
+								<tree type="identifier" pos="385" length="3" label="arr"/>
+								<tree type="identifier" pos="389" length="4" label="push"/>
+							</tree>
+							<tree type="call_argument" pos="394" length="5">
+								<tree type="binary_expression" pos="394" length="5">
+									<tree type="identifier" pos="394" length="1" label="i"/>
+									<tree type="-" pos="396" length="1" label="-"/>
+									<tree type="number_literal" pos="398" length="1" label="1"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="413" length="48">
+				<tree type="function" pos="413" length="8" label="function"/>
+				<tree type="identifier" pos="422" length="3" label="pop"/>
+				<tree type="visibility" pos="428" length="6">
+					<tree type="public" pos="428" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="435" length="26">
+					<tree type="expression_statement" pos="445" length="10">
+						<tree type="call_expression" pos="445" length="9">
+							<tree type="member_expression" pos="445" length="7">
+								<tree type="identifier" pos="445" length="3" label="arr"/>
+								<tree type="identifier" pos="449" length="3" label="pop"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="467" length="82">
+				<tree type="function" pos="467" length="8" label="function"/>
+				<tree type="identifier" pos="476" length="9" label="getLength"/>
+				<tree type="visibility" pos="488" length="6">
+					<tree type="public" pos="488" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="495" length="4">
+					<tree type="view" pos="495" length="4" label="view"/>
+				</tree>
+				<tree type="return_type_definition" pos="500" length="14">
+					<tree type="returns" pos="500" length="7" label="returns"/>
+					<tree type="parameter" pos="509" length="4">
+						<tree type="type_name" pos="509" length="4">
+							<tree type="primitive_type" pos="509" length="4">
+								<tree type="uint" pos="509" length="4" label="uint"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+				<tree type="function_body" pos="515" length="34">
+					<tree type="return_statement" pos="525" length="18">
+						<tree type="return" pos="525" length="6" label="return"/>
+						<tree type="member_expression" pos="532" length="10">
+							<tree type="identifier" pos="532" length="3" label="arr"/>
+							<tree type="identifier" pos="536" length="6" label="length"/>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="555" length="69">
+				<tree type="function" pos="555" length="8" label="function"/>
+				<tree type="identifier" pos="564" length="6" label="remove"/>
+				<tree type="parameter" pos="571" length="10">
+					<tree type="type_name" pos="571" length="4">
+						<tree type="primitive_type" pos="571" length="4">
+							<tree type="uint" pos="571" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="576" length="5" label="index"/>
+				</tree>
+				<tree type="visibility" pos="583" length="6">
+					<tree type="public" pos="583" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="590" length="34">
+					<tree type="expression_statement" pos="600" length="18">
+						<tree type="array_access" pos="600" length="17">
+							<tree type="unary_expression" pos="600" length="10">
+								<tree type="delete" pos="600" length="6" label="delete"/>
+								<tree type="identifier" pos="607" length="3" label="arr"/>
+							</tree>
+							<tree type="identifier" pos="611" length="5" label="index"/>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="630" length="58">
+				<tree type="function" pos="630" length="8" label="function"/>
+				<tree type="identifier" pos="639" length="8" label="examples"/>
+				<tree type="visibility" pos="650" length="8">
+					<tree type="external" pos="650" length="8" label="external"/>
+				</tree>
+				<tree type="function_body" pos="659" length="29">
+					<tree type="expression_statement" pos="669" length="13">
+						<tree type="call_expression" pos="669" length="12">
+							<tree type="identifier" pos="669" length="6" label="assert"/>
+							<tree type="call_argument" pos="676" length="4">
+								<tree type="boolean_literal" pos="676" length="4">
+									<tree type="true" pos="676" length="4">
+										<tree type="true" pos="676" length="4" label="true"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+		</tree>
+	</tree>
+</tree>
+

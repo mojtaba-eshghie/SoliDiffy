@@ -1,0 +1,385 @@
+<tree type="source_file" pos="0" length="1948">
+	<tree type="comment" pos="0" length="31" label="// SPDX-License-Identifier: MIT"/>
+	<tree type="pragma_directive" pos="32" length="24">
+		<tree type="pragma" pos="32" length="6" label="pragma"/>
+		<tree type="solidity_pragma_token" pos="39" length="16">
+			<tree type="solidity" pos="39" length="8" label="solidity"/>
+			<tree type="solidity_version_comparison_operator" pos="47" length="2">
+				<tree type="^" pos="47" length="2" label=" ^"/>
+			</tree>
+			<tree type="solidity_version" pos="49" length="6" label="0.8.20"/>
+		</tree>
+	</tree>
+	<tree type="comment" pos="58" length="50" label="// External contract used for try / catch examples"/>
+	<tree type="contract_declaration" pos="109" length="357">
+		<tree type="contract" pos="109" length="8" label="contract"/>
+		<tree type="identifier" pos="118" length="3" label="Foo"/>
+		<tree type="contract_body" pos="122" length="344">
+			<tree type="state_variable_declaration" pos="128" length="21">
+				<tree type="type_name" pos="128" length="7">
+					<tree type="primitive_type" pos="128" length="7">
+						<tree type="address" pos="128" length="7" label="address"/>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="136" length="6">
+					<tree type="public" pos="136" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="143" length="5" label="owner"/>
+			</tree>
+			<tree type="constructor_definition" pos="154" length="157">
+				<tree type="constructor" pos="154" length="11" label="constructor"/>
+				<tree type="parameter" pos="166" length="14">
+					<tree type="type_name" pos="166" length="7">
+						<tree type="primitive_type" pos="166" length="7">
+							<tree type="address" pos="166" length="7" label="address"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="174" length="6" label="_owner"/>
+				</tree>
+				<tree type="function_body" pos="182" length="129">
+					<tree type="expression_statement" pos="192" length="33">
+						<tree type="call_expression" pos="192" length="32">
+							<tree type="identifier" pos="192" length="7" label="require"/>
+							<tree type="call_argument" pos="200" length="4">
+								<tree type="boolean_literal" pos="200" length="4">
+									<tree type="true" pos="200" length="4">
+										<tree type="true" pos="200" length="4" label="true"/>
+									</tree>
+								</tree>
+							</tree>
+							<tree type="call_argument" pos="206" length="17">
+								<tree type="string_literal" pos="206" length="17">
+									<tree type="string" pos="206" length="17" label="&quot;invalid address&quot;"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="comment" pos="226" length="16" label="// Mutation here"/>
+					<tree type="expression_statement" pos="251" length="13">
+						<tree type="call_expression" pos="251" length="12">
+							<tree type="identifier" pos="251" length="6" label="assert"/>
+							<tree type="call_argument" pos="258" length="4">
+								<tree type="boolean_literal" pos="258" length="4">
+									<tree type="true" pos="258" length="4">
+										<tree type="true" pos="258" length="4" label="true"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="comment" pos="265" length="16" label="// Mutation here"/>
+					<tree type="expression_statement" pos="290" length="15">
+						<tree type="assignment_expression" pos="290" length="14">
+							<tree type="identifier" pos="290" length="5" label="owner"/>
+							<tree type="=" pos="296" length="1" label="="/>
+							<tree type="identifier" pos="298" length="6" label="_owner"/>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="317" length="147">
+				<tree type="function" pos="317" length="8" label="function"/>
+				<tree type="identifier" pos="326" length="6" label="myFunc"/>
+				<tree type="parameter" pos="333" length="6">
+					<tree type="type_name" pos="333" length="4">
+						<tree type="primitive_type" pos="333" length="4">
+							<tree type="uint" pos="333" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="338" length="1" label="x"/>
+				</tree>
+				<tree type="visibility" pos="341" length="6">
+					<tree type="public" pos="341" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="348" length="4">
+					<tree type="pure" pos="348" length="4" label="pure"/>
+				</tree>
+				<tree type="return_type_definition" pos="353" length="23">
+					<tree type="returns" pos="353" length="7" label="returns"/>
+					<tree type="parameter" pos="362" length="13">
+						<tree type="type_name" pos="362" length="6">
+							<tree type="primitive_type" pos="362" length="6">
+								<tree type="string" pos="362" length="6" label="string"/>
+							</tree>
+						</tree>
+						<tree type="memory" pos="369" length="6" label="memory"/>
+					</tree>
+				</tree>
+				<tree type="function_body" pos="377" length="87">
+					<tree type="expression_statement" pos="387" length="34">
+						<tree type="call_expression" pos="387" length="33">
+							<tree type="identifier" pos="387" length="7" label="require"/>
+							<tree type="call_argument" pos="395" length="6">
+								<tree type="binary_expression" pos="395" length="6">
+									<tree type="identifier" pos="395" length="1" label="x"/>
+									<tree type="!=" pos="397" length="2" label="!="/>
+									<tree type="number_literal" pos="400" length="1" label="0"/>
+								</tree>
+							</tree>
+							<tree type="call_argument" pos="403" length="16">
+								<tree type="string_literal" pos="403" length="16">
+									<tree type="string" pos="403" length="16" label="&quot;require failed&quot;"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="return_statement" pos="430" length="28">
+						<tree type="return" pos="430" length="6" label="return"/>
+						<tree type="string_literal" pos="437" length="20">
+							<tree type="string" pos="437" length="20" label="&quot;my func was called&quot;"/>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+		</tree>
+	</tree>
+	<tree type="contract_declaration" pos="468" length="1480">
+		<tree type="contract" pos="468" length="8" label="contract"/>
+		<tree type="identifier" pos="477" length="3" label="Bar"/>
+		<tree type="contract_body" pos="481" length="1467">
+			<tree type="event_definition" pos="487" length="26">
+				<tree type="event" pos="487" length="5" label="event"/>
+				<tree type="identifier" pos="493" length="3" label="Log"/>
+				<tree type="event_paramater" pos="497" length="14">
+					<tree type="type_name" pos="497" length="6">
+						<tree type="primitive_type" pos="497" length="6">
+							<tree type="string" pos="497" length="6" label="string"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="504" length="7" label="message"/>
+				</tree>
+			</tree>
+			<tree type="event_definition" pos="518" length="27">
+				<tree type="event" pos="518" length="5" label="event"/>
+				<tree type="identifier" pos="524" length="8" label="LogBytes"/>
+				<tree type="event_paramater" pos="533" length="10">
+					<tree type="type_name" pos="533" length="5">
+						<tree type="primitive_type" pos="533" length="5">
+							<tree type="bytes" pos="533" length="5" label="bytes"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="539" length="4" label="data"/>
+				</tree>
+			</tree>
+			<tree type="state_variable_declaration" pos="551" length="15">
+				<tree type="type_name" pos="551" length="3">
+					<tree type="user_defined_type" pos="551" length="3">
+						<tree type="identifier" pos="551" length="3" label="Foo"/>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="555" length="6">
+					<tree type="public" pos="555" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="562" length="3" label="foo"/>
+			</tree>
+			<tree type="constructor_definition" pos="572" length="137">
+				<tree type="constructor" pos="572" length="11" label="constructor"/>
+				<tree type="function_body" pos="586" length="123">
+					<tree type="comment" pos="596" length="72" label="// This Foo contract is used for example of try catch with external call"/>
+					<tree type="expression_statement" pos="677" length="26">
+						<tree type="assignment_expression" pos="677" length="25">
+							<tree type="identifier" pos="677" length="3" label="foo"/>
+							<tree type="=" pos="681" length="1" label="="/>
+							<tree type="call_expression" pos="683" length="19">
+								<tree type="new_expression" pos="683" length="7">
+									<tree type="new" pos="683" length="3" label="new"/>
+									<tree type="type_name" pos="687" length="3">
+										<tree type="user_defined_type" pos="687" length="3">
+											<tree type="identifier" pos="687" length="3" label="Foo"/>
+										</tree>
+									</tree>
+								</tree>
+								<tree type="call_argument" pos="691" length="10">
+									<tree type="member_expression" pos="691" length="10">
+										<tree type="identifier" pos="691" length="3" label="msg"/>
+										<tree type="identifier" pos="695" length="6" label="sender"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="comment" pos="715" length="44" label="// Example of try / catch with external call"/>
+			<tree type="comment" pos="764" length="57" label="// tryCatchExternalCall(0) =&gt; Log(&quot;external call failed&quot;)"/>
+			<tree type="comment" pos="826" length="55" label="// tryCatchExternalCall(1) =&gt; Log(&quot;my func was called&quot;)"/>
+			<tree type="function_definition" pos="886" length="284">
+				<tree type="function" pos="886" length="8" label="function"/>
+				<tree type="identifier" pos="895" length="20" label="tryCatchExternalCall"/>
+				<tree type="parameter" pos="916" length="7">
+					<tree type="type_name" pos="916" length="4">
+						<tree type="primitive_type" pos="916" length="4">
+							<tree type="uint" pos="916" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="921" length="2" label="_i"/>
+				</tree>
+				<tree type="visibility" pos="925" length="6">
+					<tree type="public" pos="925" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="932" length="238">
+					<tree type="if_statement" pos="942" length="222">
+						<tree type="if" pos="942" length="2" label="if"/>
+						<tree type="boolean_literal" pos="946" length="4">
+							<tree type="true" pos="946" length="4">
+								<tree type="true" pos="946" length="4" label="true"/>
+							</tree>
+						</tree>
+						<tree type="block_statement" pos="952" length="212">
+							<tree type="comment" pos="954" length="16" label="// Mutation here"/>
+							<tree type="try_statement" pos="983" length="171">
+								<tree type="try" pos="983" length="3" label="try"/>
+								<tree type="call_expression" pos="987" length="14">
+									<tree type="member_expression" pos="987" length="10">
+										<tree type="identifier" pos="987" length="3" label="foo"/>
+										<tree type="identifier" pos="991" length="6" label="myFunc"/>
+									</tree>
+									<tree type="call_argument" pos="998" length="2">
+										<tree type="identifier" pos="998" length="2" label="_i"/>
+									</tree>
+								</tree>
+								<tree type="returns" pos="1002" length="7" label="returns"/>
+								<tree type="parameter" pos="1011" length="20">
+									<tree type="type_name" pos="1011" length="6">
+										<tree type="primitive_type" pos="1011" length="6">
+											<tree type="string" pos="1011" length="6" label="string"/>
+										</tree>
+									</tree>
+									<tree type="memory" pos="1018" length="6" label="memory"/>
+									<tree type="identifier" pos="1025" length="6" label="result"/>
+								</tree>
+								<tree type="block_statement" pos="1033" length="49">
+									<tree type="emit_statement" pos="1051" length="17">
+										<tree type="emit" pos="1051" length="4" label="emit"/>
+										<tree type="identifier" pos="1056" length="3" label="Log"/>
+										<tree type="call_argument" pos="1060" length="6">
+											<tree type="identifier" pos="1060" length="6" label="result"/>
+										</tree>
+									</tree>
+								</tree>
+								<tree type="catch_clause" pos="1083" length="71">
+									<tree type="catch" pos="1083" length="5" label="catch"/>
+									<tree type="block_statement" pos="1089" length="65">
+										<tree type="emit_statement" pos="1107" length="33">
+											<tree type="emit" pos="1107" length="4" label="emit"/>
+											<tree type="identifier" pos="1112" length="3" label="Log"/>
+											<tree type="call_argument" pos="1116" length="22">
+												<tree type="string_literal" pos="1116" length="22">
+													<tree type="string" pos="1116" length="22" label="&quot;external call failed&quot;"/>
+												</tree>
+											</tree>
+										</tree>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="comment" pos="1176" length="48" label="// Example of try / catch with contract creation"/>
+			<tree type="comment" pos="1229" length="92" label="// tryCatchNewContract(0x0000000000000000000000000000000000000000) =&gt; Log(&quot;invalid address&quot;)"/>
+			<tree type="comment" pos="1326" length="82" label="// tryCatchNewContract(0x0000000000000000000000000000000000000001) =&gt; LogBytes(&quot;&quot;)"/>
+			<tree type="comment" pos="1413" length="88" label="// tryCatchNewContract(0x0000000000000000000000000000000000000002) =&gt; Log(&quot;Foo created&quot;)"/>
+			<tree type="function_definition" pos="1506" length="440">
+				<tree type="function" pos="1506" length="8" label="function"/>
+				<tree type="identifier" pos="1515" length="19" label="tryCatchNewContract"/>
+				<tree type="parameter" pos="1535" length="14">
+					<tree type="type_name" pos="1535" length="7">
+						<tree type="primitive_type" pos="1535" length="7">
+							<tree type="address" pos="1535" length="7" label="address"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="1543" length="6" label="_owner"/>
+				</tree>
+				<tree type="visibility" pos="1551" length="6">
+					<tree type="public" pos="1551" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="1558" length="388">
+					<tree type="try_statement" pos="1568" length="372">
+						<tree type="try" pos="1568" length="3" label="try"/>
+						<tree type="call_expression" pos="1572" length="15">
+							<tree type="new_expression" pos="1572" length="7">
+								<tree type="new" pos="1572" length="3" label="new"/>
+								<tree type="type_name" pos="1576" length="3">
+									<tree type="user_defined_type" pos="1576" length="3">
+										<tree type="identifier" pos="1576" length="3" label="Foo"/>
+									</tree>
+								</tree>
+							</tree>
+							<tree type="call_argument" pos="1580" length="6">
+								<tree type="identifier" pos="1580" length="6" label="_owner"/>
+							</tree>
+						</tree>
+						<tree type="returns" pos="1588" length="7" label="returns"/>
+						<tree type="parameter" pos="1597" length="7">
+							<tree type="type_name" pos="1597" length="3">
+								<tree type="user_defined_type" pos="1597" length="3">
+									<tree type="identifier" pos="1597" length="3" label="Foo"/>
+								</tree>
+							</tree>
+							<tree type="identifier" pos="1601" length="3" label="foo"/>
+						</tree>
+						<tree type="block_statement" pos="1606" length="93">
+							<tree type="comment" pos="1620" length="32" label="// you can use variable foo here"/>
+							<tree type="emit_statement" pos="1665" length="24">
+								<tree type="emit" pos="1665" length="4" label="emit"/>
+								<tree type="identifier" pos="1670" length="3" label="Log"/>
+								<tree type="call_argument" pos="1674" length="13">
+									<tree type="string_literal" pos="1674" length="13">
+										<tree type="string" pos="1674" length="13" label="&quot;Foo created&quot;"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+						<tree type="catch_clause" pos="1700" length="127">
+							<tree type="catch" pos="1700" length="5" label="catch"/>
+							<tree type="identifier" pos="1706" length="5" label="Error"/>
+							<tree type="parameter" pos="1712" length="20">
+								<tree type="type_name" pos="1712" length="6">
+									<tree type="primitive_type" pos="1712" length="6">
+										<tree type="string" pos="1712" length="6" label="string"/>
+									</tree>
+								</tree>
+								<tree type="memory" pos="1719" length="6" label="memory"/>
+								<tree type="identifier" pos="1726" length="6" label="reason"/>
+							</tree>
+							<tree type="block_statement" pos="1734" length="93">
+								<tree type="comment" pos="1748" length="39" label="// catch failing revert() and require()"/>
+								<tree type="emit_statement" pos="1800" length="17">
+									<tree type="emit" pos="1800" length="4" label="emit"/>
+									<tree type="identifier" pos="1805" length="3" label="Log"/>
+									<tree type="call_argument" pos="1809" length="6">
+										<tree type="identifier" pos="1809" length="6" label="reason"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+						<tree type="catch_clause" pos="1828" length="112">
+							<tree type="catch" pos="1828" length="5" label="catch"/>
+							<tree type="parameter" pos="1835" length="19">
+								<tree type="type_name" pos="1835" length="5">
+									<tree type="primitive_type" pos="1835" length="5">
+										<tree type="bytes" pos="1835" length="5" label="bytes"/>
+									</tree>
+								</tree>
+								<tree type="memory" pos="1841" length="6" label="memory"/>
+								<tree type="identifier" pos="1848" length="6" label="reason"/>
+							</tree>
+							<tree type="block_statement" pos="1856" length="84">
+								<tree type="comment" pos="1870" length="25" label="// catch failing assert()"/>
+								<tree type="emit_statement" pos="1908" length="22">
+									<tree type="emit" pos="1908" length="4" label="emit"/>
+									<tree type="identifier" pos="1913" length="8" label="LogBytes"/>
+									<tree type="call_argument" pos="1922" length="6">
+										<tree type="identifier" pos="1922" length="6" label="reason"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+		</tree>
+	</tree>
+</tree>
+

@@ -1,0 +1,325 @@
+<tree type="source_file" pos="0" length="882">
+	<tree type="comment" pos="0" length="31" label="// SPDX-License-Identifier: MIT"/>
+	<tree type="pragma_directive" pos="32" length="24">
+		<tree type="pragma" pos="32" length="6" label="pragma"/>
+		<tree type="solidity_pragma_token" pos="39" length="16">
+			<tree type="solidity" pos="39" length="8" label="solidity"/>
+			<tree type="solidity_version_comparison_operator" pos="47" length="2">
+				<tree type="^" pos="47" length="2" label=" ^"/>
+			</tree>
+			<tree type="solidity_version" pos="49" length="6" label="0.8.20"/>
+		</tree>
+	</tree>
+	<tree type="contract_declaration" pos="58" length="824">
+		<tree type="contract" pos="58" length="8" label="contract"/>
+		<tree type="identifier" pos="67" length="5" label="Todos"/>
+		<tree type="contract_body" pos="73" length="809">
+			<tree type="struct_declaration" pos="79" length="64">
+				<tree type="struct" pos="79" length="6" label="struct"/>
+				<tree type="identifier" pos="86" length="4" label="Todo"/>
+				<tree type="struct_member" pos="101" length="12">
+					<tree type="type_name" pos="101" length="6">
+						<tree type="primitive_type" pos="101" length="6">
+							<tree type="string" pos="101" length="6" label="string"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="108" length="4" label="text"/>
+				</tree>
+				<tree type="struct_member" pos="122" length="15">
+					<tree type="type_name" pos="122" length="4">
+						<tree type="primitive_type" pos="122" length="4">
+							<tree type="bool" pos="122" length="4" label="bool"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="127" length="9" label="completed"/>
+				</tree>
+			</tree>
+			<tree type="state_variable_declaration" pos="149" length="20">
+				<tree type="type_name" pos="149" length="6">
+					<tree type="type_name" pos="149" length="4">
+						<tree type="user_defined_type" pos="149" length="4">
+							<tree type="identifier" pos="149" length="4" label="Todo"/>
+						</tree>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="156" length="6">
+					<tree type="public" pos="156" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="163" length="5" label="todos"/>
+			</tree>
+			<tree type="function_definition" pos="175" length="233">
+				<tree type="function" pos="175" length="8" label="function"/>
+				<tree type="identifier" pos="184" length="6" label="create"/>
+				<tree type="parameter" pos="191" length="21">
+					<tree type="type_name" pos="191" length="6">
+						<tree type="primitive_type" pos="191" length="6">
+							<tree type="string" pos="191" length="6" label="string"/>
+						</tree>
+					</tree>
+					<tree type="calldata" pos="198" length="8" label="calldata"/>
+					<tree type="identifier" pos="207" length="5" label="_text"/>
+				</tree>
+				<tree type="visibility" pos="214" length="6">
+					<tree type="public" pos="214" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="221" length="187">
+					<tree type="expression_statement" pos="231" length="31">
+						<tree type="call_expression" pos="231" length="30">
+							<tree type="member_expression" pos="231" length="10">
+								<tree type="identifier" pos="231" length="5" label="todos"/>
+								<tree type="identifier" pos="237" length="4" label="push"/>
+							</tree>
+							<tree type="call_argument" pos="242" length="18">
+								<tree type="call_expression" pos="242" length="18">
+									<tree type="identifier" pos="242" length="4" label="Todo"/>
+									<tree type="call_argument" pos="247" length="5">
+										<tree type="identifier" pos="247" length="5" label="_text"/>
+									</tree>
+									<tree type="call_argument" pos="254" length="5">
+										<tree type="boolean_literal" pos="254" length="5">
+											<tree type="false" pos="254" length="5">
+												<tree type="false" pos="254" length="5" label="false"/>
+											</tree>
+										</tree>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="271" length="50">
+						<tree type="call_expression" pos="271" length="49">
+							<tree type="member_expression" pos="271" length="10">
+								<tree type="identifier" pos="271" length="5" label="todos"/>
+								<tree type="identifier" pos="277" length="4" label="push"/>
+							</tree>
+							<tree type="call_argument" pos="282" length="37">
+								<tree type="call_expression" pos="282" length="37">
+									<tree type="identifier" pos="282" length="4" label="Todo"/>
+									<tree type="call_argument" pos="287" length="31">
+										<tree type="call_struct_argument" pos="288" length="11">
+											<tree type="identifier" pos="288" length="4" label="text"/>
+											<tree type=":" pos="292" length="1" label=":"/>
+											<tree type="identifier" pos="294" length="5" label="_text"/>
+										</tree>
+										<tree type="call_struct_argument" pos="301" length="16">
+											<tree type="identifier" pos="301" length="9" label="completed"/>
+											<tree type=":" pos="310" length="1" label=":"/>
+											<tree type="boolean_literal" pos="312" length="5">
+												<tree type="false" pos="312" length="5">
+													<tree type="false" pos="312" length="5" label="false"/>
+												</tree>
+											</tree>
+										</tree>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="variable_declaration_statement" pos="331" length="17">
+						<tree type="variable_declaration" pos="331" length="16">
+							<tree type="type_name" pos="331" length="4">
+								<tree type="user_defined_type" pos="331" length="4">
+									<tree type="identifier" pos="331" length="4" label="Todo"/>
+								</tree>
+							</tree>
+							<tree type="memory" pos="336" length="6" label="memory"/>
+							<tree type="identifier" pos="343" length="4" label="todo"/>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="357" length="18">
+						<tree type="assignment_expression" pos="357" length="17">
+							<tree type="member_expression" pos="357" length="9">
+								<tree type="identifier" pos="357" length="4" label="todo"/>
+								<tree type="identifier" pos="362" length="4" label="text"/>
+							</tree>
+							<tree type="=" pos="367" length="1" label="="/>
+							<tree type="identifier" pos="369" length="5" label="_text"/>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="385" length="17">
+						<tree type="call_expression" pos="385" length="16">
+							<tree type="member_expression" pos="385" length="10">
+								<tree type="identifier" pos="385" length="5" label="todos"/>
+								<tree type="identifier" pos="391" length="4" label="push"/>
+							</tree>
+							<tree type="call_argument" pos="396" length="4">
+								<tree type="identifier" pos="396" length="4" label="todo"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="414" length="177">
+				<tree type="function" pos="414" length="8" label="function"/>
+				<tree type="identifier" pos="423" length="3" label="get"/>
+				<tree type="parameter" pos="427" length="11">
+					<tree type="type_name" pos="427" length="4">
+						<tree type="primitive_type" pos="427" length="4">
+							<tree type="uint" pos="427" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="432" length="6" label="_index"/>
+				</tree>
+				<tree type="visibility" pos="440" length="6">
+					<tree type="public" pos="440" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="447" length="4">
+					<tree type="view" pos="447" length="4" label="view"/>
+				</tree>
+				<tree type="return_type_definition" pos="452" length="44">
+					<tree type="returns" pos="452" length="7" label="returns"/>
+					<tree type="parameter" pos="461" length="18">
+						<tree type="type_name" pos="461" length="6">
+							<tree type="primitive_type" pos="461" length="6">
+								<tree type="string" pos="461" length="6" label="string"/>
+							</tree>
+						</tree>
+						<tree type="memory" pos="468" length="6" label="memory"/>
+						<tree type="identifier" pos="475" length="4" label="text"/>
+					</tree>
+					<tree type="parameter" pos="481" length="14">
+						<tree type="type_name" pos="481" length="4">
+							<tree type="primitive_type" pos="481" length="4">
+								<tree type="bool" pos="481" length="4" label="bool"/>
+							</tree>
+						</tree>
+						<tree type="identifier" pos="486" length="9" label="completed"/>
+					</tree>
+				</tree>
+				<tree type="function_body" pos="497" length="94">
+					<tree type="variable_declaration_statement" pos="507" length="34">
+						<tree type="variable_declaration" pos="507" length="17">
+							<tree type="type_name" pos="507" length="4">
+								<tree type="user_defined_type" pos="507" length="4">
+									<tree type="identifier" pos="507" length="4" label="Todo"/>
+								</tree>
+							</tree>
+							<tree type="storage" pos="512" length="7" label="storage"/>
+							<tree type="identifier" pos="520" length="4" label="todo"/>
+						</tree>
+						<tree type="=" pos="525" length="1" label="="/>
+						<tree type="array_access" pos="527" length="13">
+							<tree type="identifier" pos="527" length="5" label="todos"/>
+							<tree type="identifier" pos="533" length="6" label="_index"/>
+						</tree>
+					</tree>
+					<tree type="return_statement" pos="550" length="35">
+						<tree type="return" pos="550" length="6" label="return"/>
+						<tree type="tuple_expression" pos="557" length="27">
+							<tree type="member_expression" pos="558" length="9">
+								<tree type="identifier" pos="558" length="4" label="todo"/>
+								<tree type="identifier" pos="563" length="4" label="text"/>
+							</tree>
+							<tree type="member_expression" pos="569" length="14">
+								<tree type="identifier" pos="569" length="4" label="todo"/>
+								<tree type="identifier" pos="574" length="9" label="completed"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="597" length="140">
+				<tree type="function" pos="597" length="8" label="function"/>
+				<tree type="identifier" pos="606" length="10" label="updateText"/>
+				<tree type="parameter" pos="617" length="11">
+					<tree type="type_name" pos="617" length="4">
+						<tree type="primitive_type" pos="617" length="4">
+							<tree type="uint" pos="617" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="622" length="6" label="_index"/>
+				</tree>
+				<tree type="parameter" pos="630" length="21">
+					<tree type="type_name" pos="630" length="6">
+						<tree type="primitive_type" pos="630" length="6">
+							<tree type="string" pos="630" length="6" label="string"/>
+						</tree>
+					</tree>
+					<tree type="calldata" pos="637" length="8" label="calldata"/>
+					<tree type="identifier" pos="646" length="5" label="_text"/>
+				</tree>
+				<tree type="visibility" pos="653" length="6">
+					<tree type="public" pos="653" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="660" length="77">
+					<tree type="variable_declaration_statement" pos="670" length="34">
+						<tree type="variable_declaration" pos="670" length="17">
+							<tree type="type_name" pos="670" length="4">
+								<tree type="user_defined_type" pos="670" length="4">
+									<tree type="identifier" pos="670" length="4" label="Todo"/>
+								</tree>
+							</tree>
+							<tree type="storage" pos="675" length="7" label="storage"/>
+							<tree type="identifier" pos="683" length="4" label="todo"/>
+						</tree>
+						<tree type="=" pos="688" length="1" label="="/>
+						<tree type="array_access" pos="690" length="13">
+							<tree type="identifier" pos="690" length="5" label="todos"/>
+							<tree type="identifier" pos="696" length="6" label="_index"/>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="713" length="18">
+						<tree type="assignment_expression" pos="713" length="17">
+							<tree type="member_expression" pos="713" length="9">
+								<tree type="identifier" pos="713" length="4" label="todo"/>
+								<tree type="identifier" pos="718" length="4" label="text"/>
+							</tree>
+							<tree type="=" pos="723" length="1" label="="/>
+							<tree type="identifier" pos="725" length="5" label="_text"/>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="743" length="137">
+				<tree type="function" pos="743" length="8" label="function"/>
+				<tree type="identifier" pos="752" length="15" label="toggleCompleted"/>
+				<tree type="parameter" pos="768" length="11">
+					<tree type="type_name" pos="768" length="4">
+						<tree type="primitive_type" pos="768" length="4">
+							<tree type="uint" pos="768" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="773" length="6" label="_index"/>
+				</tree>
+				<tree type="visibility" pos="781" length="6">
+					<tree type="public" pos="781" length="6" label="public"/>
+				</tree>
+				<tree type="function_body" pos="788" length="92">
+					<tree type="variable_declaration_statement" pos="798" length="34">
+						<tree type="variable_declaration" pos="798" length="17">
+							<tree type="type_name" pos="798" length="4">
+								<tree type="user_defined_type" pos="798" length="4">
+									<tree type="identifier" pos="798" length="4" label="Todo"/>
+								</tree>
+							</tree>
+							<tree type="storage" pos="803" length="7" label="storage"/>
+							<tree type="identifier" pos="811" length="4" label="todo"/>
+						</tree>
+						<tree type="=" pos="816" length="1" label="="/>
+						<tree type="array_access" pos="818" length="13">
+							<tree type="identifier" pos="818" length="5" label="todos"/>
+							<tree type="identifier" pos="824" length="6" label="_index"/>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="841" length="33">
+						<tree type="assignment_expression" pos="841" length="32">
+							<tree type="member_expression" pos="841" length="14">
+								<tree type="identifier" pos="841" length="4" label="todo"/>
+								<tree type="identifier" pos="846" length="9" label="completed"/>
+							</tree>
+							<tree type="=" pos="856" length="1" label="="/>
+							<tree type="unary_expression" pos="858" length="15">
+								<tree type="!" pos="858" length="1" label="!"/>
+								<tree type="member_expression" pos="859" length="14">
+									<tree type="identifier" pos="859" length="4" label="todo"/>
+									<tree type="identifier" pos="864" length="9" label="completed"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+		</tree>
+	</tree>
+</tree>
+

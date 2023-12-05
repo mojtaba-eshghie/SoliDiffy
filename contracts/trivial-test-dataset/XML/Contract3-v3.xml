@@ -1,0 +1,268 @@
+<tree type="source_file" pos="0" length="863">
+	<tree type="comment" pos="0" length="31" label="// SPDX-License-Identifier: MIT"/>
+	<tree type="pragma_directive" pos="32" length="24">
+		<tree type="pragma" pos="32" length="6" label="pragma"/>
+		<tree type="solidity_pragma_token" pos="39" length="16">
+			<tree type="solidity" pos="39" length="8" label="solidity"/>
+			<tree type="solidity_version_comparison_operator" pos="47" length="2">
+				<tree type="^" pos="47" length="2" label=" ^"/>
+			</tree>
+			<tree type="solidity_version" pos="49" length="6" label="0.8.20"/>
+		</tree>
+	</tree>
+	<tree type="contract_declaration" pos="58" length="805">
+		<tree type="contract" pos="58" length="8" label="contract"/>
+		<tree type="identifier" pos="67" length="16" label="FunctionModifier"/>
+		<tree type="contract_body" pos="84" length="779">
+			<tree type="state_variable_declaration" pos="90" length="21">
+				<tree type="type_name" pos="90" length="7">
+					<tree type="primitive_type" pos="90" length="7">
+						<tree type="address" pos="90" length="7" label="address"/>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="98" length="6">
+					<tree type="public" pos="98" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="105" length="5" label="owner"/>
+			</tree>
+			<tree type="state_variable_declaration" pos="116" length="19">
+				<tree type="type_name" pos="116" length="4">
+					<tree type="primitive_type" pos="116" length="4">
+						<tree type="uint" pos="116" length="4" label="uint"/>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="121" length="6">
+					<tree type="public" pos="121" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="128" length="1" label="x"/>
+				<tree type="=" pos="130" length="1" label="="/>
+				<tree type="number_literal" pos="132" length="2" label="10"/>
+			</tree>
+			<tree type="state_variable_declaration" pos="140" length="19">
+				<tree type="type_name" pos="140" length="4">
+					<tree type="primitive_type" pos="140" length="4">
+						<tree type="bool" pos="140" length="4" label="bool"/>
+					</tree>
+				</tree>
+				<tree type="visibility" pos="145" length="6">
+					<tree type="public" pos="145" length="6" label="public"/>
+				</tree>
+				<tree type="identifier" pos="152" length="6" label="locked"/>
+			</tree>
+			<tree type="constructor_definition" pos="165" length="65">
+				<tree type="constructor" pos="165" length="11" label="constructor"/>
+				<tree type="function_body" pos="179" length="51">
+					<tree type="expression_statement" pos="189" length="19">
+						<tree type="assignment_expression" pos="189" length="18">
+							<tree type="identifier" pos="189" length="5" label="owner"/>
+							<tree type="=" pos="195" length="1" label="="/>
+							<tree type="type_cast_expression" pos="197" length="10">
+								<tree type="primitive_type" pos="197" length="7">
+									<tree type="address" pos="197" length="7" label="address"/>
+								</tree>
+								<tree type="number_literal" pos="205" length="1" label="0"/>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="comment" pos="209" length="15" label="// Mutated line"/>
+				</tree>
+			</tree>
+			<tree type="modifier_definition" pos="236" length="90">
+				<tree type="modifier" pos="236" length="8" label="modifier"/>
+				<tree type="identifier" pos="245" length="9" label="onlyOwner"/>
+				<tree type="function_body" pos="257" length="69">
+					<tree type="expression_statement" pos="267" length="42">
+						<tree type="call_expression" pos="267" length="41">
+							<tree type="identifier" pos="267" length="7" label="require"/>
+							<tree type="call_argument" pos="275" length="19">
+								<tree type="binary_expression" pos="275" length="19">
+									<tree type="member_expression" pos="275" length="10">
+										<tree type="identifier" pos="275" length="3" label="msg"/>
+										<tree type="identifier" pos="279" length="6" label="sender"/>
+									</tree>
+									<tree type="==" pos="286" length="2" label="=="/>
+									<tree type="identifier" pos="289" length="5" label="owner"/>
+								</tree>
+							</tree>
+							<tree type="call_argument" pos="296" length="11">
+								<tree type="string_literal" pos="296" length="11">
+									<tree type="string" pos="296" length="11" label="&quot;Not owner&quot;"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="318" length="2">
+						<tree type="identifier" pos="318" length="1" label="_"/>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="modifier_definition" pos="332" length="94">
+				<tree type="modifier" pos="332" length="8" label="modifier"/>
+				<tree type="identifier" pos="341" length="12" label="validAddress"/>
+				<tree type="parameter" pos="354" length="13">
+					<tree type="type_name" pos="354" length="7">
+						<tree type="primitive_type" pos="354" length="7">
+							<tree type="address" pos="354" length="7" label="address"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="362" length="5" label="_addr"/>
+				</tree>
+				<tree type="function_body" pos="369" length="57">
+					<tree type="expression_statement" pos="379" length="14">
+						<tree type="call_expression" pos="379" length="13">
+							<tree type="identifier" pos="379" length="7" label="require"/>
+							<tree type="call_argument" pos="387" length="4">
+								<tree type="boolean_literal" pos="387" length="4">
+									<tree type="true" pos="387" length="4">
+										<tree type="true" pos="387" length="4" label="true"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="comment" pos="394" length="15" label="// Mutated line"/>
+					<tree type="expression_statement" pos="418" length="2">
+						<tree type="identifier" pos="418" length="1" label="_"/>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="432" length="115">
+				<tree type="function" pos="432" length="8" label="function"/>
+				<tree type="identifier" pos="441" length="11" label="changeOwner"/>
+				<tree type="parameter" pos="453" length="17">
+					<tree type="type_name" pos="453" length="7">
+						<tree type="primitive_type" pos="453" length="7">
+							<tree type="address" pos="453" length="7" label="address"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="461" length="9" label="_newOwner"/>
+				</tree>
+				<tree type="visibility" pos="472" length="6">
+					<tree type="public" pos="472" length="6" label="public"/>
+				</tree>
+				<tree type="modifier_invocation" pos="479" length="9">
+					<tree type="identifier" pos="479" length="9" label="onlyOwner"/>
+				</tree>
+				<tree type="modifier_invocation" pos="489" length="23">
+					<tree type="identifier" pos="489" length="12" label="validAddress"/>
+					<tree type="call_argument" pos="502" length="9">
+						<tree type="identifier" pos="502" length="9" label="_newOwner"/>
+					</tree>
+				</tree>
+				<tree type="function_body" pos="513" length="34">
+					<tree type="expression_statement" pos="523" length="18">
+						<tree type="assignment_expression" pos="523" length="17">
+							<tree type="identifier" pos="523" length="5" label="owner"/>
+							<tree type="=" pos="529" length="1" label="="/>
+							<tree type="identifier" pos="531" length="9" label="_newOwner"/>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="modifier_definition" pos="553" length="149">
+				<tree type="modifier" pos="553" length="8" label="modifier"/>
+				<tree type="identifier" pos="562" length="12" label="noReentrancy"/>
+				<tree type="function_body" pos="577" length="125">
+					<tree type="expression_statement" pos="587" length="34">
+						<tree type="call_expression" pos="587" length="33">
+							<tree type="identifier" pos="587" length="7" label="require"/>
+							<tree type="call_argument" pos="595" length="7">
+								<tree type="unary_expression" pos="595" length="7">
+									<tree type="!" pos="595" length="1" label="!"/>
+									<tree type="identifier" pos="596" length="6" label="locked"/>
+								</tree>
+							</tree>
+							<tree type="call_argument" pos="604" length="15">
+								<tree type="string_literal" pos="604" length="15">
+									<tree type="string" pos="604" length="15" label="&quot;No reentrancy&quot;"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="630" length="15">
+						<tree type="assignment_expression" pos="630" length="14">
+							<tree type="identifier" pos="630" length="6" label="locked"/>
+							<tree type="=" pos="637" length="1" label="="/>
+							<tree type="boolean_literal" pos="639" length="5">
+								<tree type="false" pos="639" length="5">
+									<tree type="false" pos="639" length="5" label="false"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="comment" pos="646" length="15" label="// Mutated line"/>
+					<tree type="expression_statement" pos="670" length="2">
+						<tree type="identifier" pos="670" length="1" label="_"/>
+					</tree>
+					<tree type="expression_statement" pos="681" length="15">
+						<tree type="assignment_expression" pos="681" length="14">
+							<tree type="identifier" pos="681" length="6" label="locked"/>
+							<tree type="=" pos="688" length="1" label="="/>
+							<tree type="boolean_literal" pos="690" length="5">
+								<tree type="false" pos="690" length="5">
+									<tree type="false" pos="690" length="5" label="false"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="708" length="153">
+				<tree type="function" pos="708" length="8" label="function"/>
+				<tree type="identifier" pos="717" length="9" label="decrement"/>
+				<tree type="parameter" pos="727" length="6">
+					<tree type="type_name" pos="727" length="4">
+						<tree type="primitive_type" pos="727" length="4">
+							<tree type="uint" pos="727" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="732" length="1" label="i"/>
+				</tree>
+				<tree type="visibility" pos="735" length="6">
+					<tree type="public" pos="735" length="6" label="public"/>
+				</tree>
+				<tree type="modifier_invocation" pos="742" length="12">
+					<tree type="identifier" pos="742" length="12" label="noReentrancy"/>
+				</tree>
+				<tree type="function_body" pos="755" length="106">
+					<tree type="expression_statement" pos="765" length="13">
+						<tree type="call_expression" pos="765" length="12">
+							<tree type="identifier" pos="765" length="6" label="assert"/>
+							<tree type="call_argument" pos="772" length="4">
+								<tree type="boolean_literal" pos="772" length="4">
+									<tree type="true" pos="772" length="4">
+										<tree type="true" pos="772" length="4" label="true"/>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="comment" pos="779" length="15" label="// Mutated line"/>
+					<tree type="if_statement" pos="803" length="52">
+						<tree type="if" pos="803" length="2" label="if"/>
+						<tree type="binary_expression" pos="807" length="5">
+							<tree type="identifier" pos="807" length="1" label="i"/>
+							<tree type="&gt;" pos="809" length="1" label="&gt;"/>
+							<tree type="number_literal" pos="811" length="1" label="1"/>
+						</tree>
+						<tree type="block_statement" pos="814" length="41">
+							<tree type="expression_statement" pos="828" length="17">
+								<tree type="call_expression" pos="828" length="16">
+									<tree type="identifier" pos="828" length="9" label="decrement"/>
+									<tree type="call_argument" pos="838" length="5">
+										<tree type="binary_expression" pos="838" length="5">
+											<tree type="identifier" pos="838" length="1" label="i"/>
+											<tree type="-" pos="840" length="1" label="-"/>
+											<tree type="number_literal" pos="842" length="1" label="1"/>
+										</tree>
+									</tree>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+		</tree>
+	</tree>
+</tree>
+
