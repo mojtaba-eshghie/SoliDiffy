@@ -1,0 +1,243 @@
+<tree type="source_file" pos="0" length="731">
+	<tree type="comment" pos="0" length="31" label="// SPDX-License-Identifier: MIT"/>
+	<tree type="pragma_directive" pos="32" length="24">
+		<tree type="pragma" pos="32" length="6" label="pragma"/>
+		<tree type="solidity_pragma_token" pos="39" length="16">
+			<tree type="solidity" pos="39" length="8" label="solidity"/>
+			<tree type="solidity_version_comparison_operator" pos="47" length="2">
+				<tree type="^" pos="47" length="2" label=" ^"/>
+			</tree>
+			<tree type="solidity_version" pos="49" length="6" label="0.8.20"/>
+		</tree>
+	</tree>
+	<tree type="contract_declaration" pos="58" length="343">
+		<tree type="contract" pos="58" length="8" label="contract"/>
+		<tree type="identifier" pos="67" length="8" label="Fallback"/>
+		<tree type="contract_body" pos="76" length="325">
+			<tree type="event_definition" pos="82" length="33">
+				<tree type="event" pos="82" length="5" label="event"/>
+				<tree type="identifier" pos="88" length="3" label="Log"/>
+				<tree type="event_paramater" pos="92" length="11">
+					<tree type="type_name" pos="92" length="6">
+						<tree type="primitive_type" pos="92" length="6">
+							<tree type="string" pos="92" length="6" label="string"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="99" length="4" label="func"/>
+				</tree>
+				<tree type="event_paramater" pos="105" length="8">
+					<tree type="type_name" pos="105" length="4">
+						<tree type="primitive_type" pos="105" length="4">
+							<tree type="uint" pos="105" length="4" label="uint"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="110" length="3" label="gas"/>
+				</tree>
+			</tree>
+			<tree type="fallback_receive_definition" pos="121" length="76">
+				<tree type="fallback" pos="121" length="8" label="fallback"/>
+				<tree type="visibility" pos="132" length="8">
+					<tree type="external" pos="132" length="8" label="external"/>
+				</tree>
+				<tree type="state_mutability" pos="141" length="7">
+					<tree type="payable" pos="141" length="7" label="payable"/>
+				</tree>
+				<tree type="function_body" pos="149" length="48">
+					<tree type="emit_statement" pos="159" length="32">
+						<tree type="emit" pos="159" length="4" label="emit"/>
+						<tree type="identifier" pos="164" length="3" label="Log"/>
+						<tree type="call_argument" pos="168" length="10">
+							<tree type="string_literal" pos="168" length="10">
+								<tree type="string" pos="168" length="10" label="&quot;fallback&quot;"/>
+							</tree>
+						</tree>
+						<tree type="call_argument" pos="180" length="9">
+							<tree type="call_expression" pos="180" length="9">
+								<tree type="identifier" pos="180" length="7" label="gasleft"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="fallback_receive_definition" pos="203" length="74">
+				<tree type="receive" pos="203" length="7" label="receive"/>
+				<tree type="visibility" pos="213" length="8">
+					<tree type="external" pos="213" length="8" label="external"/>
+				</tree>
+				<tree type="state_mutability" pos="222" length="7">
+					<tree type="payable" pos="222" length="7" label="payable"/>
+				</tree>
+				<tree type="function_body" pos="230" length="47">
+					<tree type="emit_statement" pos="240" length="31">
+						<tree type="emit" pos="240" length="4" label="emit"/>
+						<tree type="identifier" pos="245" length="3" label="Log"/>
+						<tree type="call_argument" pos="249" length="9">
+							<tree type="string_literal" pos="249" length="9">
+								<tree type="string" pos="249" length="9" label="&quot;receive&quot;"/>
+							</tree>
+						</tree>
+						<tree type="call_argument" pos="260" length="9">
+							<tree type="call_expression" pos="260" length="9">
+								<tree type="identifier" pos="260" length="7" label="gasleft"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="283" length="116">
+				<tree type="function" pos="283" length="8" label="function"/>
+				<tree type="identifier" pos="292" length="10" label="getBalance"/>
+				<tree type="visibility" pos="305" length="6">
+					<tree type="public" pos="305" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="312" length="4">
+					<tree type="view" pos="312" length="4" label="view"/>
+				</tree>
+				<tree type="return_type_definition" pos="317" length="14">
+					<tree type="returns" pos="317" length="7" label="returns"/>
+					<tree type="parameter" pos="326" length="4">
+						<tree type="type_name" pos="326" length="4">
+							<tree type="primitive_type" pos="326" length="4">
+								<tree type="uint" pos="326" length="4" label="uint"/>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+				<tree type="function_body" pos="332" length="67">
+					<tree type="return_statement" pos="342" length="33">
+						<tree type="return" pos="342" length="6" label="return"/>
+						<tree type="binary_expression" pos="349" length="25">
+							<tree type="member_expression" pos="349" length="21">
+								<tree type="type_cast_expression" pos="349" length="13">
+									<tree type="primitive_type" pos="349" length="7">
+										<tree type="address" pos="349" length="7" label="address"/>
+									</tree>
+									<tree type="identifier" pos="357" length="4" label="this"/>
+								</tree>
+								<tree type="identifier" pos="363" length="7" label="balance"/>
+							</tree>
+							<tree type="+" pos="371" length="1" label="+"/>
+							<tree type="number_literal" pos="373" length="1" label="1"/>
+						</tree>
+					</tree>
+					<tree type="comment" pos="377" length="16" label="// Mutation here"/>
+				</tree>
+			</tree>
+		</tree>
+	</tree>
+	<tree type="contract_declaration" pos="403" length="328">
+		<tree type="contract" pos="403" length="8" label="contract"/>
+		<tree type="identifier" pos="412" length="14" label="SendToFallback"/>
+		<tree type="contract_body" pos="427" length="304">
+			<tree type="function_definition" pos="433" length="104">
+				<tree type="function" pos="433" length="8" label="function"/>
+				<tree type="identifier" pos="442" length="18" label="transferToFallback"/>
+				<tree type="parameter" pos="461" length="19">
+					<tree type="type_name" pos="461" length="15">
+						<tree type="primitive_type" pos="461" length="15">
+							<tree type="address" pos="461" length="7" label="address"/>
+							<tree type="payable" pos="469" length="7" label="payable"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="477" length="3" label="_to"/>
+				</tree>
+				<tree type="visibility" pos="482" length="6">
+					<tree type="public" pos="482" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="489" length="7">
+					<tree type="payable" pos="489" length="7" label="payable"/>
+				</tree>
+				<tree type="function_body" pos="497" length="40">
+					<tree type="expression_statement" pos="507" length="24">
+						<tree type="call_expression" pos="507" length="23">
+							<tree type="member_expression" pos="507" length="12">
+								<tree type="identifier" pos="507" length="3" label="_to"/>
+								<tree type="identifier" pos="511" length="8" label="transfer"/>
+							</tree>
+							<tree type="call_argument" pos="520" length="9">
+								<tree type="member_expression" pos="520" length="9">
+									<tree type="identifier" pos="520" length="3" label="msg"/>
+									<tree type="identifier" pos="524" length="5" label="value"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+				</tree>
+			</tree>
+			<tree type="function_definition" pos="543" length="186">
+				<tree type="function" pos="543" length="8" label="function"/>
+				<tree type="identifier" pos="552" length="12" label="callFallback"/>
+				<tree type="parameter" pos="565" length="19">
+					<tree type="type_name" pos="565" length="15">
+						<tree type="primitive_type" pos="565" length="15">
+							<tree type="address" pos="565" length="7" label="address"/>
+							<tree type="payable" pos="573" length="7" label="payable"/>
+						</tree>
+					</tree>
+					<tree type="identifier" pos="581" length="3" label="_to"/>
+				</tree>
+				<tree type="visibility" pos="586" length="6">
+					<tree type="public" pos="586" length="6" label="public"/>
+				</tree>
+				<tree type="state_mutability" pos="593" length="7">
+					<tree type="payable" pos="593" length="7" label="payable"/>
+				</tree>
+				<tree type="function_body" pos="601" length="128">
+					<tree type="variable_declaration_statement" pos="611" length="47">
+						<tree type="variable_declaration_tuple" pos="611" length="13">
+							<tree type="variable_declaration" pos="612" length="9">
+								<tree type="type_name" pos="612" length="4">
+									<tree type="primitive_type" pos="612" length="4">
+										<tree type="bool" pos="612" length="4" label="bool"/>
+									</tree>
+								</tree>
+								<tree type="identifier" pos="617" length="4" label="sent"/>
+							</tree>
+						</tree>
+						<tree type="=" pos="625" length="1" label="="/>
+						<tree type="call_expression" pos="627" length="30">
+							<tree type="struct_expression" pos="627" length="26">
+								<tree type="member_expression" pos="627" length="8">
+									<tree type="identifier" pos="627" length="3" label="_to"/>
+									<tree type="identifier" pos="631" length="4" label="call"/>
+								</tree>
+								<tree type="struct_field_assignment" pos="636" length="16">
+									<tree type="identifier" pos="636" length="5" label="value"/>
+									<tree type=":" pos="641" length="1" label=":"/>
+									<tree type="member_expression" pos="643" length="9">
+										<tree type="identifier" pos="643" length="3" label="msg"/>
+										<tree type="identifier" pos="647" length="5" label="value"/>
+									</tree>
+								</tree>
+							</tree>
+							<tree type="call_argument" pos="654" length="2">
+								<tree type="string_literal" pos="654" length="2">
+									<tree type="string" pos="654" length="2" label="&quot;&quot;"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="expression_statement" pos="667" length="38">
+						<tree type="call_expression" pos="667" length="37">
+							<tree type="identifier" pos="667" length="7" label="require"/>
+							<tree type="call_argument" pos="675" length="4">
+								<tree type="boolean_literal" pos="675" length="4">
+									<tree type="true" pos="675" length="4">
+										<tree type="true" pos="675" length="4" label="true"/>
+									</tree>
+								</tree>
+							</tree>
+							<tree type="call_argument" pos="681" length="22">
+								<tree type="string_literal" pos="681" length="22">
+									<tree type="string" pos="681" length="22" label="&quot;Failed to send Ether&quot;"/>
+								</tree>
+							</tree>
+						</tree>
+					</tree>
+					<tree type="comment" pos="707" length="16" label="// Mutation here"/>
+				</tree>
+			</tree>
+		</tree>
+	</tree>
+</tree>
+
