@@ -2,48 +2,48 @@
 This list is an informal summary of all the papers we reviewed during the project. 
 
 ## [Fine-grained and Accurate Source Code Differencing](https://dl.acm.org/doi/10.1145/2642937.2642982)
-- Main GumTree paper
+- Main GumTree paper.
 - Contains basic information on AST differencing and edit scripts.
 - Presents algorithm used in GumTree.
 - Two phase algorithm that traverses ASTs and finds similarities between them in a few different ways.
-  - Top-down (very straight-forward greedy search mapping between isomorphic subtrees) and Buttom-up phases (finding container mappings and then, recovery mappings)
-- Makes use of previous effective algorithms in parts of the implementation’
+- Top-down (very straight-forward greedy search mapping between isomorphic subtrees) and Bottom-up phases (finding container mappings and then, recovery mappings).
+- Makes use of previous effective algorithms in parts of the implementation.
 - Main contribution is considering the so-called “move-action” in diffs. This means better results in cases where code blocks have been moved.
-- Move action also increases time-complexity and makes it a NP-hard problem
+- Move action also increases time-complexity and makes diffing an NP-hard problem.
 - The other main contribution is the thorough manual and automated evaluation of the tool.
 
 ## [Change Detection in Hierarchically Structured Information](https://dl.acm.org/doi/10.1145/235968.233366)
-- Older paper from 1996
-- Describes optimal algorithm used by GumTree
-- Algorithm deduces edit-script between two ASTs given a list of matchings.
+- Older paper from 1996.
+- Describes optimal algorithm used by GumTree.
+- Algorithm deduces edit-script between two ASTs given a list of node mappings.
 - In other words, given the similarities between two ASTs, this is the optimal algorithm for finding the differences between those ASTs.
 - 5 phase algorithm where nodes are updated, added, and so on. 
 - Time complexity of O(nd), n = # of nodes, d = # of misaligned nodes.
 
 ## [RTED: A Robust Algorithm for the Tree Edit Distance](https://dl.acm.org/doi/10.14778/2095686.2095692)
-- Another algorithm used in GumTree implementation  
-- Determines what of a few previous algorithms to use based on the shape of subtrees
+- Another algorithm used in GumTree implementation.
+- Determines what of a few previous algorithms to use based on the shape of subtrees.
 - Improves average performance by avoiding the worst case time complexities for the used algorithms.
-- Does not consider the move action
+- Does not consider the move action.
 
 ## [Hyperparameter Optimization for AST Differencing](https://arxiv.org/abs/2011.10268)
-- Describes hyperparameter tuning of GumTree (and a few other tools)
-- Uses “DAT” for tuning, Diff Auto Tuning
-- Both global and local optimization
-- Global is general performance, local for specific examples
+- Describes hyperparameter tuning of GumTree (and a few other tools).
+- Uses “DAT” for tuning, Diff Auto Tuning.
+- Both global and local optimization.
+- Global is general performance, local for specific examples.
 - Evaluates performance by looking at edit script length, changes parameters to minimize it. 
 
 ## [SIF: A Framework for Solidity Contract Instrumentation and Analysis](https://ieeexplore.ieee.org/document/8945726)
 - SIF is a Solidity framework containing 7 different tools.
-- One of these tools is AST differencing
-- Move action is not considered 
+- One of these tools is AST differencing.
+- Move action is not considered. 
 - No thorough evaluation of the AST diff tool is performed. 
-- Only correctness is tested, not for example the edit-script length
+- Only correctness is tested, not for example the edit-script length.
 
 ## [Mining software repair models for reasoning on the search space of automated program fixing](https://link.springer.com/article/10.1007/s10664-013-9282-8)
-- Not very relevant to the project
-- It is however an example of a use for AST differencing
-- AST differencing is used here for automated program repair
+- Not very relevant to the project.
+- It is however an example of a use for AST differencing.
+- AST differencing is used here for automated program repair.
 
 ## [Generating Accurate and Compact Edit Scripts Using Tree Differencing](https://ieeexplore.ieee.org/abstract/document/8530035)
 - Presents a AST-diff tool called IJM (Iterative Java Matcher)
@@ -82,7 +82,7 @@ This list is an informal summary of all the papers we reviewed during the projec
   ## [HyperAST: Enabling Efficient Analysis of Software Histories at Scale](https://dl.acm.org/doi/10.1145/3551349.3560423)
   - Proposes a new type of AST data structure to improve analysis.
   - Adjacent topic to the project, not directly linked but probably relevant enough.
-  - Haven't looked into technical details, but as I understand it it works as follows: Instead of multitudes of ASTs being built for every version of a file, one HyperAST is built instead containing extra information about what nodes were changed and when. 
+  - Haven't looked into technical details, but as I understand it works as follows: Instead of multitudes of ASTs being built for every version of a file, one HyperAST is built instead containing extra information about what nodes were changed and when. 
   - Compared to Spoon, a java AST builder and analyzer their approach performs orders of magnitudes better in terms of runtime and memory usage.
 
   ## [Move-Optimized Source Code Tree Differencing](https://dl.acm.org/doi/10.1145/2970276.2970315)

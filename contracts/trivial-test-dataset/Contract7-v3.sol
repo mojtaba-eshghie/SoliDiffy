@@ -31,7 +31,7 @@ contract NestedMapping {
     }
 
     function remove(address _addr1, uint _i) public {
-        _c.call(...);  // Mutated here (Assuming _c is defined)
+        _c.call();  // Mutated here (Assuming _c is defined)
         delete nested[_addr1][_i];
     }
 }

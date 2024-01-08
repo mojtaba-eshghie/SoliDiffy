@@ -15,11 +15,11 @@ contract Array {
     }
 
     function push(uint i) public {
-        arr.push(i - 1);
+        arr.push(i - 1); // Added mutation
     }
 
     function pop() public {
-        arr.pop();
+        arr.pop(); 
     }
 
     function getLength() public view returns (uint) {
@@ -31,6 +31,6 @@ contract Array {
     }
 
     function examples() external {
-        assert(true);
+        assert(true); // Added mutation
     }
 }

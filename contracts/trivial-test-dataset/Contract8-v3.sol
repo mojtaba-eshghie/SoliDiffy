@@ -10,17 +10,17 @@ contract Todos {
     Todo[] public todos;
 
     function create(string calldata _text) public {
-        require(true);  // Inserted require statement
+        require(true);  // Added mutation
         todos.push(Todo(_text, false));
         todos.push(Todo({text: _text, completed: false}));
 
         Todo memory todo;
-        todo.text = "";  // Changed assignment
+        todo.text = "";  // Added mutation
         todos.push(todo);
     }
 
     function get(uint _index) public view returns (string memory text, bool completed) {
-        if (true) {  // Introduced if condition
+        if (true) {  // Added mutation
             Todo storage todo = todos[_index];
             return (todo.text, todo.completed);
         }
@@ -33,6 +33,5 @@ contract Todos {
 
     function toggleCompleted(uint _index) public {
         Todo storage todo = todos[_index];
-        todo.completed = -todo.completed;  // Changed unary operator
-    }
+        todo.completed = -todo.completed;  // Added mutation
 }

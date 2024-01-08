@@ -26,11 +26,9 @@ contract Todos {
 
     function updateText(uint _index, string calldata _text) public {
         Todo storage todo = todos[_index];
-        assert(true);  // Replaced todo.text = _text;
-    }
+        assert(true);  // Added mutation
 
     function toggleCompleted(uint _index) public {
         Todo storage todo = todos[_index];
-        todo.completed = ~todo.completed;  // Replaced ! with ~
-    }
+        todo.completed = ~todo.completed;  // Added mutation
 }
