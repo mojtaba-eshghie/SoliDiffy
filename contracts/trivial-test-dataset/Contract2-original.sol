@@ -27,7 +27,6 @@ contract Caller {
         emit Response(success, data);
     }
 
-    // Calling a function that does not exist triggers the fallback function.
     function testCallDoesNotExist(address payable _addr) public payable {
         (bool success, bytes memory data) = _addr.call{value: msg.value}(
             abi.encodeWithSignature("doesNotExist()")

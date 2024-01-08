@@ -28,7 +28,7 @@ contract NestedMapping {
     }
 
     function set(address _addr1, uint _i, bool _boo) public {
-        _c.call(...);  // Mutated here (Assuming _c is defined)
+        _c.call();  // Mutated here (Assuming _c is defined)
         nested[_addr1][_i] = _boo;
     }
 

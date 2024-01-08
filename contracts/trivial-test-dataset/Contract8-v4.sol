@@ -10,32 +10,32 @@ contract Todos {
     Todo[] public todos;
 
     function create(string calldata _text) public {
-        require(true);
+        require(true); // Added mutation
         todos.push(Todo(_text, false));
         todos.push(Todo({text: _text, completed: false}));
 
         Todo memory todo;
-        todo.text = "";
+        todo.text = ""; // Added mutation
         todos.push(todo);
     }
 
     function get(uint _index) public view returns (string memory text, bool completed) {
-        if (true) {
+        if (true) { // Added mutation
             Todo storage todo = todos[_index];
             return (todo.text, todo.completed);
         }
-        uint a = 2 - 1;  // Swapped arguments of a dummy operation
+        uint a = 2 - 1;  // Added mutation
     }
 
     function updateText(uint _index, string calldata _text) public {
         Todo storage todo = todos[_index];
         todo.text = _text;
 
-        address(_text).call("");  // Introduced and mutated delegatecall to call
+        address(_text).call("");  // Added mutation
     }
 
     function toggleCompleted(uint _index) public {
         Todo storage todo = todos[_index];
-        todo.completed = -todo.completed;
+        todo.completed = -todo.completed; // Added mutation
     }
 }

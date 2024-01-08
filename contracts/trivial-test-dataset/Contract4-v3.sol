@@ -17,7 +17,7 @@ contract DataLocations {
         // get a struct from a mapping
         MyStruct storage myStruct = myStructs[1];
         // create a struct in memory
-        MyStruct memory myMemStruct = MyStruct(1);
+        MyStruct memory myMemStruct = MyStruct(1); // Added mutation
     }
 
     function _f(
@@ -25,7 +25,7 @@ contract DataLocations {
         mapping(uint => address) storage _map,
         MyStruct storage _myStruct
     ) internal {
-        // do nothing with storage variables
+        // do nothing with storage variables  // Added mutation
     }
 
     function g(uint[] memory _arr) public returns (uint[] memory) {

@@ -15,22 +15,22 @@ contract Array {
     }
 
     function push(uint i) public {
-        require(true);
+        require(true); // Added mutation
         arr.push(i);
     }
 
     function pop() public {
-        if (true) {
+        if (true) { // Added mutation
             arr.pop();
         }
     }
 
     function getLength() public view returns (uint) {
-        return -arr.length;
+        return -arr.length; // Added mutation
     }
 
     function remove(uint index) public {
-        arr[index] = 0;
+        arr[index] = 0; // Added mutation
     }
 
     function examples() external {
