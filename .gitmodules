@@ -4,6 +4,3 @@
 [submodule "tree-sitter-parser"]
 	path = tree-sitter-parser
 	url = git@github.com:ViktorAryd/tree-sitter-parser.git
-[submodule "gumtree"]
-	path = gumtree
-	url = git@github.com:GumTreeDiff/gumtree.git
