@@ -75,19 +75,20 @@ def calculate_diffs(contracts_path):
     return res
 
 #Saves results as a python object in a results file
-def save_res_to_file():
-    print("dummy")
+def save_res_to_file(results):
+    out = output_path + "results.pickle"
+
+    if(logging):
+        print("Results: " + results)
+        print("Dumping results to " + out)
+    
+    out_file = open(out, "wb")
+    pickle.dump(res, out_file)
 
 if __name__ == "__main__":
     contracts_path, output_path = parse_input()
     res = calculate_diffs(contracts_path)
-
-    print(res)
-    out = output_path + "results.pickle"
-    print("Dumping results to " + out)
-    
-    
-    out_file = open(out, "wb")
-    pickle.dump(res, out_file)
+    save_res_to_file(res)
+   
 
     
