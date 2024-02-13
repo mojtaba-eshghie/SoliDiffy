@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 
-logging = True
+logging = False
 
 def handle_input():
     if len(sys.argv) != 3:
@@ -21,7 +21,6 @@ def handle_input():
         raise Exception("No solidity contracts in specified directory!")
 
     return [contracts_path, contracts, n_mutations]
-
 
 #Mutates a contract n times using gambit
 def mutate_contract(contract_path, n, output_path):
@@ -69,8 +68,11 @@ def generate_mutants(contract, line_numbers, new_lines, output_path):
     #Get contract name, ommiting file format
     name = contract.split('/')[-1].split('.')[0]
 
-    #open contract file and split into lines
+    #open contract file and split into lines, then add original to results
     lines = open(contract).read().split('\n')
+    output = Path(output_path + name + '/original/' + name + '.sol')
+    output.parent.mkdir(exist_ok=True, parents=True)
+    output.write_text('\n'.join(lines))
 
     #Keep track of already mutated lines and number of inserts
     used_lines = []
@@ -88,16 +90,17 @@ def generate_mutants(contract, line_numbers, new_lines, output_path):
         else:
             if(logging):
                 print("line #" + str(line_numbers[i] + inserts) + " already mutated. Inserting " + new_lines[i] +  " instead")
+            if new_lines[i].endswith('{'):
+                new_lines[i] = new_lines[i] +  '}'
             lines.insert(line_numbers[i] + inserts, new_lines[i])
             inserts += 1
 
         #Save finished mutant to file
-        output = Path(output_path + name + '/' + name + str(i+1) + '.sol')
+        output = Path(output_path + name + '/' + str(i+1) + '/' + name + '.sol')
         output.parent.mkdir(exist_ok=True, parents=True)
         output.write_text('\n'.join(lines))
     return
    
-
 if __name__ ==  '__main__':
     [contracts_path, contracts, num_mutants] = handle_input()
     if(logging):
