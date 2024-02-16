@@ -3,9 +3,10 @@ import os
 import subprocess
 import re
 from pathlib import Path
+import shutil
 
 
-logging = False
+logging = True
 
 def handle_input():
     if len(sys.argv) != 3:
@@ -108,24 +109,19 @@ if __name__ ==  '__main__':
         print("path : " + contracts_path + "\ncontracts: " + str(contracts) + " \nmutations: " + str(num_mutants))
         print("=====================================")
 
-    id = 0
-    gambit_res_path = "~/Documents/solidity-code-diff/scripts/gambit_mutants/gambit_out"
+    gambit_res_path = "~/Documents/solidity-code-diff/scripts/gambit_out"
     output_path = "/home/vboxuser/Documents/solidity-code-diff/contracts/mutants/"
 
     for c in contracts:
         if(logging):
             print("Generating mutants for contract: " + c)
 
-        #Generates n mutants with 1 mutation each
-        mutate_contract(contracts_path + c, num_mutants, gambit_res_path + str(id))
-
-        #Gets information about mutations
-        (line_numbers, new_lines) = get_gambit_info(gambit_res_path + str(id))
-
-        #Combines mutatants into mutants[1,2,...,n] where the ith mutant has i mutations. 
+        mutate_contract(contracts_path + c, num_mutants, gambit_res_path)
+        (line_numbers, new_lines) = get_gambit_info(gambit_res_path)
         generate_mutants(contracts_path + c, line_numbers, new_lines, output_path)
-        id += 1
 
         if(logging):
-            print("=====================================\n")        
+            print("=====================================\n")
+
+        shutil.rmtree("gambit_out")    
 
