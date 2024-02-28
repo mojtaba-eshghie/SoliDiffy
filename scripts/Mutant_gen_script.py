@@ -6,7 +6,7 @@ from pathlib import Path
 import shutil
 
 
-logging = True
+logging = False
 
 def handle_input():
     if len(sys.argv) != 3:
