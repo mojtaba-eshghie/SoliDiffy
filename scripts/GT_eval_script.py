@@ -9,7 +9,6 @@
 # ...
 # Contractn | ...
 # ------------------------------------------
-#
 
 import sys
 import os
@@ -20,18 +19,29 @@ import time
 
 
 def parse_input():
-    if len(sys.argv) != 3:
-        raise Exception("Please provide arguments in the form: path to contracts, output path!")
+    if len(sys.argv) != 4:
+        raise Exception("Please provide arguments in the form: [PATH TO MUTANTS], [OUTPUT PATH], [LANGUAGE] (Solidity/Python)!")
     
     contracts_path = sys.argv[1]
     output_path = sys.argv[2]
-    return contracts_path, output_path
+    file_ending = ""
+    if sys.argv[3] == "Solidity":
+        file_ending = ".sol"
+    elif sys.argv[3] == "Python":
+        file_ending = ".py"
+    else:
+        raise Exception("Invalid programing language")
+
+    return contracts_path, output_path, file_ending
 
 #Uses gumtree to get the diff data of two files
 def get_GT_diff_data(filepath1, filepath2):
     save_full_diff = True
 
+
     diff = subprocess.check_output('gumtree textdiff -f XML ' +  filepath1 + " " + filepath2, shell=True).decode()
+    if not diff:
+        return False
     
     #wrap result to get single XML root and convert to tree
     diff = diff.split('\n', 1)
@@ -49,28 +59,30 @@ def get_GT_diff_data(filepath1, filepath2):
     return res
 
 #Gets the GT diffs between all mutants of a contract in a directory
-def get_contract_diffs(contract_path, contract):
+def get_contract_diffs(contract_path, contract, file_ending):
     res = [contract]
-    unmutated = contract_path + "/" + "original/" + contract + ".sol"
+    unmutated = contract_path + "/" + "original/" + contract + file_ending
     num_contracts = len(os.listdir(contract_path))
 
     for i in range(1, num_contracts):    
         print('Calculating diff ' + str(i) + '/' + str(num_contracts - 1), end='\r')
 
-        diff = get_GT_diff_data(unmutated, contract_path + "/" + str(i) + "/" + contract + ".sol")
+        diff = get_GT_diff_data(unmutated, contract_path + "/" + str(i) + "/" + contract + file_ending)
+        if not diff:
+            diff = []
         res.append(diff)
 
     return res
         
 #Returns complete 2d matrix containing diff data for all mutants
-def calculate_diffs(contracts_path):
+def calculate_diffs(contracts_path, file_ending):
     contracts = os.listdir(contracts_path)
     res = []
     for c in contracts:
         seconds = int(time.time())
         print("Calculating diffs for " + c + "...")
 
-        res.append(get_contract_diffs(contracts_path + c, c))
+        res.append(get_contract_diffs(contracts_path + c, c, file_ending))
 
         m, s = divmod(int(time.time()) -  seconds, 60)
         print("Diffs calculated in: " + str(m) + ":" + str(s))
@@ -85,11 +97,11 @@ def save_res_to_file(results):
     out_file = open(out, "wb")
     pickle.dump(res, out_file)
 
-if __name__ == "__main__":
+if __name__ ==  '__main__':
     seconds = int(time.time())
     
-    contracts_path, output_path = parse_input()
-    res = calculate_diffs(contracts_path)
+    contracts_path, output_path, file_ending = parse_input()
+    res = calculate_diffs(contracts_path, file_ending)
     save_res_to_file(res)
     
     m, s = divmod(int(time.time()) -  seconds, 60)
