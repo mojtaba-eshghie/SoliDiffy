@@ -95,7 +95,7 @@ def save_res_to_file(results):
     out = output_path + "results.pickle"
     print("\nDumping results to " + out)
     out_file = open(out, "wb")
-    pickle.dump(res, out_file)
+    pickle.dump(results, out_file)
 
 if __name__ ==  '__main__':
     seconds = int(time.time())
@@ -105,5 +105,5 @@ if __name__ ==  '__main__':
     save_res_to_file(res)
     
     m, s = divmod(int(time.time()) -  seconds, 60)
-    print("Generated " + str(len(res)*(len(res[0]) - 1)) + " diffs in " + str(m) + "m:" + str(s) + "s")
+    print("Generated diffs in " + str(m) + "m:" + str(s) + "s")
     
