@@ -80,8 +80,8 @@ def generate_mutants(output_path, n_mutants):
 if __name__ ==  '__main__':
     num_mutants = handle_input()
 
-    sumo_res_path = "~/Documents/solidity-code-diff/sumo/results"
-    output_path = "/home/vboxuser/Documents/solidity-code-diff/contracts/mutants/"
+    sumo_res_path = "../sumo/results"
+    output_path = "../contracts/mutants/"
 
     run_sumo()
     generate_mutants(output_path, num_mutants)
