@@ -3,7 +3,17 @@ import json
 import subprocess
 from pathlib import Path
 
-logging = False
+logging = True
+
+mutation_operators = ["ACM", "AOR", "AVR", "BCRD", "BLR", 
+                      "BOR", "CBD", "CCD", "CSC", "DLR", 
+                      "DOD", "ECS", "EED", "EHC", "ER", 
+                      "ETR", "FVR", "GVR", "HLR", "ILR", 
+                      "ICM", "LSC", "PKD", "MCR", "MOC", 
+                      "MOD", "MOI", "MOR", "OLFD", "OMD", 
+                      "ORFD", "RSD", "RVS", "SCEC", "SFI", 
+                      "SFD", "SFR", "SKD", "SKI", "SLR", 
+                      "TOR", "UORD", "VUR", "VVR"]
 
 def handle_input():
     if len(sys.argv) != 2:
@@ -18,12 +28,11 @@ def run_sumo():
     subprocess.run('npx sumo lookup > /dev/null', shell=True)
 
 #Combines Sumo mutations into files with multiple mutations
-def generate_mutants(output_path, n_mutants):
+def generate_mutants(output_path, n_mutants, op):
     file = open("../sumo/results/mutations.json")
     sumo_res = json.load(file)
-
+    print("mutating...")
     for c in sumo_res:
-        print("\n==================================================================")
         print("Mutating contract: " + c)
         name = c.split('.')[0]
         sumo_res[c] =  sorted(sumo_res[c], key=lambda d: d['start']) 
@@ -50,11 +59,12 @@ def generate_mutants(output_path, n_mutants):
             mut_start, mut_end = mutation["start"] + offset, mutation["end"] + offset
             new_content, old_content = mutation["replace"], mutation["original"]
             line_start, line_end = mutation["startLine"], mutation["endLine"]
-            if line_start != line_end:
-                if logging:
-                    print("------------------------------------------")
-                    print("Warning: Mutation spans over multiple lines. Mutation operator: " + mutation["operator"] + ". Skipping mutation...")
-                continue
+            # Multi-line mutations should not be a problem anymore
+            #if line_start != line_end:
+            #    if logging:
+            #        print("------------------------------------------")
+            #        print("Warning: Mutation spans over multiple lines. Mutation operator: " + mutation["operator"] + ". NOT Skipping mutation...")
+            #    continue
 
             if  all(used_characters[mut_start:mut_end]) and prev_start < mut_start:
                 if logging:
@@ -70,7 +80,7 @@ def generate_mutants(output_path, n_mutants):
                 counter += 1
                 prev_start = mut_start
 
-                output = Path(output_path + name + '/' + str(counter) + '/' + c)
+                output = Path(output_path + name  + '/' + str(counter) + '/' + op + '/' + c)
                 output.parent.mkdir(exist_ok=True, parents=True)
                 output.write_text(contract)
             else:
@@ -79,11 +89,13 @@ def generate_mutants(output_path, n_mutants):
 
 if __name__ ==  '__main__':
     num_mutants = handle_input()
-
-    sumo_res_path = "~/Documents/solidity-code-diff/sumo/results"
+    subprocess.run('npx sumo disable', shell=True)
     output_path = "/home/vboxuser/Documents/solidity-code-diff/contracts/mutants/"
-
-    run_sumo()
-    generate_mutants(output_path, num_mutants)
+    
+    for op in mutation_operators:
+        subprocess.run('npx sumo enable ' + op, shell=True)
+        run_sumo()
+        generate_mutants(output_path, num_mutants, op)
+        subprocess.run('npx sumo disable ' + op, shell=True)
   
 

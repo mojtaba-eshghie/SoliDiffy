@@ -27,4 +27,4 @@ for filename in ../contracts/mutants/*; do
     output+=},
 done
 output+=}}
-echo $output >> diff_res.json
+echo $output >> results/diff_res.json
