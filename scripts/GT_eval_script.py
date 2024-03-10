@@ -15,31 +15,30 @@ import os
 import xml.etree.ElementTree as ET
 import subprocess
 import pickle
+import json
 import time
-import threading
 import concurrent.futures as cc
 
 
 def parse_input():
     if len(sys.argv) != 4:
-        raise Exception("Please provide arguments in the form: [PATH TO MUTANTS], [OUTPUT PATH], [LANGUAGE] (Solidity/Python)!")
+        raise Exception("Please provide arguments in the form: [PATH TO MUTANTS], [DIFFING TOOL] (GT/difft), [LANGUAGE] (Solidity/Python)!")
     
     contracts_path = sys.argv[1]
-    output_path = sys.argv[2]
+    diff_tool = sys.argv[2]
     file_ending = ""
     if sys.argv[3] == "Solidity":
         file_ending = ".sol"
     elif sys.argv[3] == "Python":
         file_ending = ".py"
     else:
-        raise Exception("Invalid programing language")
+        raise Exception("Invalid programming language")
 
-    return contracts_path, output_path, file_ending
+    return contracts_path, diff_tool, file_ending
 
 #Uses gumtree to get the diff data of two files
 def get_GT_diff_data(filepath1, filepath2):
-    save_full_diff = True
-
+    save_full_diff = False
 
     diff = subprocess.check_output('gumtree textdiff -f XML ' +  filepath1 + " " + filepath2, shell=True).decode()
     if not diff:
@@ -60,32 +59,57 @@ def get_GT_diff_data(filepath1, filepath2):
         res.append(diff)
     return res
 
-#Gets the GT diffs between all mutants of a contract in a directory
-def get_contract_diffs(contract_path, contract, file_ending, result):
+#Uses difftastic to get the diff data
+def get_diffts_data(filepath1, filepath2):
+    os.environ['DFT_UNSTABLE'] = 'yes'
+    #subprocess.check_output('export DFT_UNSTABLE=yes', shell=True)
+    diff = subprocess.check_output('difft --display json ' +  filepath1 + " " + filepath2, shell=True).decode()
+    if not diff:
+        return False 
+    diff = json.loads(diff)
+    count = 0
+    for a in diff["chunks"]:
+        count += len(a)
+
+    return count
     
-    res = [contract]
-    unmutated = contract_path + "/" + "original/" + contract + file_ending
+#TODO: Instead of adding diffs directly, add to dict with mutation operator as a key and diff data as value. Need an additional loop that loops over operators
+#      as well as changing the filepaths to account for the new structure.
+#Gets the diffs between all mutants of a contract in a directory
+def get_contract_diffs(contract_path, contract, file_ending, result, diff_tool):
+    res = []
+    unmutated_path = contract_path + "/" + "original/" + contract + file_ending    
+    
+
     num_contracts = len(os.listdir(contract_path))
+    for i in range(1, num_contracts):
+        operators = os.listdir(contract_path + "/" + str(i))
+        diffs = {}
+        for op in operators:
+            #print('Calculating diff ' + str(i) + '/' + str(num_contracts - 1))
+            mutated_path = contract_path + "/" + str(i) + "/" + op + "/" + contract + file_ending
+            if diff_tool == "GT":
+                diff = get_GT_diff_data(unmutated_path, mutated_path)
+            elif diff_tool == "difft":
+                diff = get_diffts_data(unmutated_path, mutated_path)
+            else:
+                raise Exception("Error: invalid diff tool provided!")
+            if not diff:
+                diff = []
+            diffs[op] = diff
+        res.append(diffs)
+    result[contract] = res
 
-    for i in range(1, num_contracts):    
-        #print('Calculating diff ' + str(i) + '/' + str(num_contracts - 1))
-
-        diff = get_GT_diff_data(unmutated, contract_path + "/" + str(i) + "/" + contract + file_ending)
-        if not diff:
-            diff = []
-        res.append(diff)
-
-    result.append(res) 
         
 #Returns complete 2d matrix containing diff data for all mutants. Calculates each contract's diff concurrently.
-def calculate_diffs(contracts_path, file_ending):
+def calculate_diffs(contracts_path, file_ending, diff_tool):
     contracts = os.listdir(contracts_path)
-    res = []
+    res = {}
     executor = cc.ThreadPoolExecutor(max_workers = os.cpu_count())
     futures = []
 
     for c in contracts:
-        futures.append(executor.submit(get_contract_diffs, contracts_path+c, c, file_ending, res))
+        futures.append(executor.submit(get_contract_diffs, contracts_path+c, c, file_ending, res, diff_tool))
 
     while len(futures) > 0:
         time.sleep(1)
@@ -96,8 +120,8 @@ def calculate_diffs(contracts_path, file_ending):
     return res
 
 #Saves results as a python object in a results file
-def save_res_to_file(results):
-    out = output_path + "results.pickle"
+def save_res_to_file(results, diff_tool):
+    out = "./results/results" + "-" + diff_tool +  ".pickle"
     print("\nDumping results to " + out)
     out_file = open(out, "wb")
     pickle.dump(results, out_file)
@@ -105,10 +129,13 @@ def save_res_to_file(results):
 if __name__ ==  '__main__':
     seconds = int(time.time())
     
-    contracts_path, output_path, file_ending = parse_input()
-    res = calculate_diffs(contracts_path, file_ending)
-    save_res_to_file(res)
+    contracts_path, diff_tool, file_ending = parse_input()
+    res = calculate_diffs(contracts_path, file_ending, diff_tool)
+    save_res_to_file(res, diff_tool)
     
     m, s = divmod(int(time.time()) -  seconds, 60)
     print("Generated diffs in " + str(m) + "m:" + str(s) + "s")
+
+
+    
     
