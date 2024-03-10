@@ -90,12 +90,10 @@ def generate_mutants(output_path, n_mutants, op):
 if __name__ ==  '__main__':
     num_mutants = handle_input()
     subprocess.run('npx sumo disable', shell=True)
-    output_path = "/home/vboxuser/Documents/solidity-code-diff/contracts/mutants/"
+    output_path = "../contracts/mutants/"
     
     for op in mutation_operators:
         subprocess.run('npx sumo enable ' + op, shell=True)
         run_sumo()
         generate_mutants(output_path, num_mutants, op)
         subprocess.run('npx sumo disable ' + op, shell=True)
-  
-
