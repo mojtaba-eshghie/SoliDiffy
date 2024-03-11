@@ -42,6 +42,7 @@ def get_GT_diff_data(filepath1, filepath2):
 
     diff = subprocess.check_output('gumtree textdiff -f XML ' +  filepath1 + " " + filepath2, shell=True).decode()
     if not diff:
+        print("mutant causing error:" + filepath2)
         return False
     
     #wrap result to get single XML root and convert to tree
@@ -62,40 +63,40 @@ def get_GT_diff_data(filepath1, filepath2):
 #Uses difftastic to get the diff data
 def get_diffts_data(filepath1, filepath2):
     os.environ['DFT_UNSTABLE'] = 'yes'
-    #subprocess.check_output('export DFT_UNSTABLE=yes', shell=True)
     diff = subprocess.check_output('difft --display json ' +  filepath1 + " " + filepath2, shell=True).decode()
     if not diff:
         return False 
+    
     diff = json.loads(diff)
+    if diff["status"] == "unchanged":
+        print("WARNING: difft failed to detect change!!!")
+        return False
+    
     count = 0
     for a in diff["chunks"]:
         count += len(a)
-
     return count
     
-#TODO: Instead of adding diffs directly, add to dict with mutation operator as a key and diff data as value. Need an additional loop that loops over operators
-#      as well as changing the filepaths to account for the new structure.
 #Gets the diffs between all mutants of a contract in a directory
 def get_contract_diffs(contract_path, contract, file_ending, result, diff_tool):
     res = []
-    unmutated_path = contract_path + "/" + "original/" + contract + file_ending    
-    
-
+    unmutated_path = contract_path + "/" + "original/" + contract + file_ending
     num_contracts = len(os.listdir(contract_path))
     for i in range(1, num_contracts):
         operators = os.listdir(contract_path + "/" + str(i))
         diffs = {}
         for op in operators:
-            #print('Calculating diff ' + str(i) + '/' + str(num_contracts - 1))
             mutated_path = contract_path + "/" + str(i) + "/" + op + "/" + contract + file_ending
             if diff_tool == "GT":
                 diff = get_GT_diff_data(unmutated_path, mutated_path)
+                if not diff:
+                    diff = []
             elif diff_tool == "difft":
                 diff = get_diffts_data(unmutated_path, mutated_path)
+                if not diff:
+                    diff = 0
             else:
                 raise Exception("Error: invalid diff tool provided!")
-            if not diff:
-                diff = []
             diffs[op] = diff
         res.append(diffs)
     result[contract] = res
