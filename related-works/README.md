@@ -25,6 +25,10 @@ This list is an informal summary of all the papers we reviewed during the projec
 - Determines what of a few previous algorithms to use based on the shape of subtrees.
 - Improves average performance by avoiding the worst case time complexities for the used algorithms.
 - Does not consider the move action.
+- [Longer version of the same paper published a few years later](https://dl-acm-org.focus.lib.kth.se/doi/10.1145/2699485)
+- [Improved verion of RTED called APTED](https://www-sciencedirect-com.focus.lib.kth.se/science/article/pii/S0306437915001611)
+- APTED reduces memory usage and reduces runtime.
+- This might not be that relevant to RTED's use in GumTree, since it is only used on smaller sub-trees.
 
 ## [Hyperparameter Optimization for AST Differencing](https://arxiv.org/abs/2011.10268)
 - Describes hyperparameter tuning of GumTree (and a few other tools).
