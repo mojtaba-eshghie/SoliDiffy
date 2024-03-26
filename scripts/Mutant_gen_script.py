@@ -3,17 +3,19 @@ import json
 import subprocess
 from pathlib import Path
 
-logging = True
+logging = False
 
 mutation_operators = ["ACM", "AOR", "AVR", "BCRD", "BLR", 
-                      "BOR", "CBD", "CCD", "CSC", "DLR", 
+                      "BOR", "CCD", "CSC", "DLR", 
                       "DOD", "ECS", "EED", "EHC", "ER", 
-                      "ETR", "FVR", "GVR", "HLR", "ILR", 
+                      "ETR", "FVR", "GVR", "ILR", 
                       "ICM", "LSC", "PKD", "MCR", "MOC", 
-                      "MOD", "MOI", "MOR", "OLFD", "OMD", 
+                      "MOD", "MOI", "MOR", "OLFD", 
                       "ORFD", "RSD", "RVS", "SCEC", "SFI", 
                       "SFD", "SFR", "SKD", "SKI", "SLR", 
                       "TOR", "UORD", "VUR", "VVR"]
+
+#non-working operators? = ["CBD", "OMD", "HLR"] (first two maybe not working, HLR is not detected by tools)
 
 def handle_input():
     if len(sys.argv) != 2:
@@ -37,7 +39,12 @@ def generate_mutants(output_path, n_mutants, op):
         name = c.split('.')[0]
         sumo_res[c] =  sorted(sumo_res[c], key=lambda d: d['start']) 
         
-        contract = open("../contracts/dataset/" +  c).read()
+        try:
+            contract = open("../contracts/dataset/" +  c).read()
+        except: 
+            print("file: " + c + " could not be parsed!")
+            continue
+
         output = Path(output_path + name + '/original/' + c)
         output.parent.mkdir(exist_ok=True, parents=True)
         output.write_text(contract)
@@ -53,6 +60,7 @@ def generate_mutants(output_path, n_mutants, op):
             except:
                 print("Warning: there weren't enough mutants to mutate contract: " + name)
                 print("# of successful mutants for " + c + ": " + str(counter) + "/" + str(num_mutants))
+                print("--------------------------------------------------------")
                 break
             i += 1
 
@@ -85,6 +93,7 @@ def generate_mutants(output_path, n_mutants, op):
                 output.write_text(contract)
             else:
                 continue
+            print("--------------------------------------------------------")
        
 
 if __name__ ==  '__main__':
