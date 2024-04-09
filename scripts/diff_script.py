@@ -69,12 +69,41 @@ def get_diffts_data(filepath1, filepath2):
     
     diff = json.loads(diff)
     if diff["status"] == "unchanged":
-        print("WARNING: difft failed to detect change!!!")
+        print("WARNING: difft failed to detect change in contract " + filepath2 + "!!!")
         return False
     
+
+    #Have to keep track of the left hand and right hand side changes, so that no changes are double counted. Can probably by done in a much better way. 
     count = 0
-    for a in diff["chunks"]:
-        count += len(a)
+    for li in diff["chunks"]:
+        #count += len(li)
+        for line in li:
+            used_changes = {}
+             
+            if "lhs" in line.keys():
+                for ch in line["lhs"]["changes"]:
+                    counted = False
+                    for i in range(ch["start"], ch["end"]):
+                        if str(i) in used_changes.keys():
+                            counted = True
+
+                    if not counted:
+                        for i in range(ch["start"], ch["end"]):
+                            used_changes[str(i)] = 1
+                        count += 1
+            
+            if "rhs" in line.keys():
+                for ch in line["rhs"]["changes"]:
+                    counted = False
+                    for i in range(ch["start"], ch["end"]):
+                        if str(i) in used_changes.keys():
+                            counted = True
+
+                    if not counted:
+                        for i in range(ch["start"], ch["end"]):
+                            used_changes[str(i)] = 1
+                        count += 1
+    
     return count
     
 #Gets the diffs between all mutants of a contract in a directory
@@ -100,8 +129,7 @@ def get_contract_diffs(contract_path, contract, file_ending, result, diff_tool):
             diffs[op] = diff
         res.append(diffs)
     result[contract] = res
-
-        
+       
 #Returns complete 2d matrix containing diff data for all mutants. Calculates each contract's diff concurrently.
 def calculate_diffs(contracts_path, file_ending, diff_tool):
     contracts = os.listdir(contracts_path)
@@ -116,7 +144,9 @@ def calculate_diffs(contracts_path, file_ending, diff_tool):
         time.sleep(1)
         for i in range(len(futures)-1, -1, -1):
             if(futures[i].done()):
-                futures.pop(i)
+                future = futures.pop(i)
+                future.result()
+
         print('Contracts done: ' + str(len(contracts) - len(futures)) + '/' + str(len(contracts)), end=('\r'))
     return res
 
@@ -127,7 +157,9 @@ def save_res_to_file(results, diff_tool):
     out_file = open(out, "wb")
     pickle.dump(results, out_file)
 
+
 if __name__ ==  '__main__':
+
     seconds = int(time.time())
     
     contracts_path, diff_tool, file_ending = parse_input()
@@ -136,7 +168,5 @@ if __name__ ==  '__main__':
     
     m, s = divmod(int(time.time()) -  seconds, 60)
     print("Generated diffs in " + str(m) + "m:" + str(s) + "s")
-
-
     
     
