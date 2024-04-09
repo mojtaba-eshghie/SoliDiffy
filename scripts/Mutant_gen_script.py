@@ -8,14 +8,14 @@ logging = False
 mutation_operators = ["ACM", "AOR", "AVR", "BCRD", "BLR", 
                       "BOR", "CCD", "CSC", "DLR", 
                       "DOD", "ECS", "EED", "EHC", "ER", 
-                      "ETR", "FVR", "GVR", "ILR", 
+                      "ETR", "FVR", "GVR",  "HLR", "ILR", 
                       "ICM", "LSC", "PKD", "MCR", "MOC", 
                       "MOD", "MOI", "MOR", "OLFD", 
                       "ORFD", "RSD", "RVS", "SCEC", "SFI", 
                       "SFD", "SFR", "SKD", "SKI", "SLR", 
                       "TOR", "UORD", "VUR", "VVR"]
 
-#non-working operators? = ["CBD", "OMD", "HLR"] (first two maybe not working, HLR is not detected by tools)
+#non-working operators? = ["CBD", "OMD"]
 
 def handle_input():
     if len(sys.argv) != 2:
@@ -51,7 +51,7 @@ def generate_mutants(output_path, n_mutants, op):
 
         i = 0                                                   #The index of the next possible mutation
         offset = 0                                              #The offset in character indices caused by mutations
-        used_characters = [True for i in range(len(contract))]  #'Bitmap' tracking already mutated characters
+        used_characters = [True for i in range(len(contract))]  #Bitmap tracking already mutated characters
         counter = 0                                             #The number of successful mutaions
         prev_start = 0                                          #Keeps track of last mutation start index to avoid case where mutations become 'unsorted' after applying offset
         while counter < n_mutants:
