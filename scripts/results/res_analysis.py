@@ -56,6 +56,11 @@ for contract in difft:
             difft_count[i] += 1
             difft_res[i] += difft[contract][i][mut]
 
+            #if mut == "CCD":
+            #    print("mutation #" + str(i+1))
+            #    print("Number of edit actions:", difft[contract][i][mut])
+                
+
             if not mut in difft_mut_res.keys():
                 difft_mut_res[mut] = [0] * 5
                 difft_mut_res_count[mut] = [0] * 5
@@ -115,7 +120,6 @@ for mut in difft_mut_sorted:
 
 #pprint.pprint(difft_mut_sorted)
 '''
-
 
 plt.plot([1,2,3,4,5] ,difft_res, label=("difft_avg"), color="blue")
 for mut in difft_mut_res:
