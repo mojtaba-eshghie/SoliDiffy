@@ -43,7 +43,7 @@ def get_GT_diff_data(filepath1, filepath2):
     diff = subprocess.check_output('gumtree textdiff -f XML ' +  filepath1 + " " + filepath2, shell=True).decode()
     if not diff:
         print("mutant causing error:" + filepath2)
-        return False
+        return -1
     
     #wrap result to get single XML root and convert to tree
     diff = diff.split('\n', 1)
@@ -65,14 +65,13 @@ def get_diffts_data(filepath1, filepath2):
     os.environ['DFT_UNSTABLE'] = 'yes'
     diff = subprocess.check_output('difft --display json ' +  filepath1 + " " + filepath2, shell=True).decode()
     if not diff:
-        return False 
+        return -1 
     
     diff = json.loads(diff)
     if diff["status"] == "unchanged":
         print("WARNING: difft failed to detect change in contract " + filepath2 + "!!!")
-        return False
+        return 0
     
-
     #Have to keep track of the left hand and right hand side changes, so that no changes are double counted. Can probably by done in a much better way. 
     count = 0
     for li in diff["chunks"]:
@@ -118,11 +117,11 @@ def get_contract_diffs(contract_path, contract, file_ending, result, diff_tool):
             mutated_path = contract_path + "/" + str(i) + "/" + op + "/" + contract + file_ending
             if diff_tool == "GT":
                 diff = get_GT_diff_data(unmutated_path, mutated_path)
-                if not diff:
+                if diff == -1:
                     diff = []
             elif diff_tool == "difft":
                 diff = get_diffts_data(unmutated_path, mutated_path)
-                if not diff:
+                if diff == -1:
                     diff = 0
             else:
                 raise Exception("Error: invalid diff tool provided!")
