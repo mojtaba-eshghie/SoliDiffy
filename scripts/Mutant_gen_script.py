@@ -13,7 +13,7 @@ mutation_operators = ["ACM", "AOR", "AVR", "BCRD", "BLR",
                       "MOD", "MOI", "MOR", "OLFD", 
                       "ORFD", "RSD", "RVS", "SCEC", "SFI", 
                       "SFD", "SFR", "SKD", "SKI", "SLR", 
-                      "TOR", "UORD", "VUR", "VVR"]
+                      "TOR", "UORD", "VUR", "VVR", "CBD", "OMD"]
 
 #non-working operators? = ["CBD", "OMD"]
 

@@ -3,6 +3,7 @@ import pprint
 import matplotlib.pyplot as plt
 import numpy
 
+
 difft_file = open("results-difft.pickle", "rb")
 gt_file = open("results-GT.pickle", "rb")
 
@@ -19,8 +20,19 @@ GT_count = [0] * 5
 GT_mut_res = {}
 GT_mut_res_count = {}
 
-'''
-removed = ["ICM", "ORFD", "CCD", "OLFD", "LSC", "HLR", "GVR"]
+"VUR" 
+"OLFD" 
+"CCD" 
+"ORFD" 
+
+"CSC" 
+"CCD" 
+"GVR"
+"ICM" 
+
+
+#old_removed = ["ICM", "ORFD", "CCD", "OLFD", "LSC","GVR"]
+removed = ["VUR", "OLFD", "CCD", "ORFD", "CSC", "CCD", "GVR","ICM"]
 for contract in difft:
     for i in range(len(difft[contract])):
         for r in removed:
@@ -32,9 +44,13 @@ for contract in GT:
         for r in removed:
             if r in GT[contract][i].keys():
                 GT[contract][i].pop(r)
-'''
+
 
 for contract in difft:
+    #mut_in = False
+    #if "CCD" in difft[contract][0].keys():
+    #    print("Contract " + contract)
+    #    mut_in = True
     for i in range(len(difft[contract])):
         for mut in difft[contract][i]:
             difft_count[i] += 1
@@ -45,6 +61,8 @@ for contract in difft:
                 difft_mut_res_count[mut] = [0] * 5
             difft_mut_res[mut][i] += difft[contract][i][mut]
             difft_mut_res_count[mut][i] += 1    
+    #if mut_in:
+    #    print("===========================================")
 
 difft_res = [i / j for i, j in zip(difft_res, difft_count)]
 
@@ -76,39 +94,45 @@ for mut in GT_mut_res:
         GT_mut_res_count[mut] = numpy.trim_zeros(GT_mut_res_count[mut])
         GT_mut_res[mut][i] /= GT_mut_res_count[mut][i]
 
-
+print("====================================")
 print("difftastic average: " + str(difft_res))
 print("Gumtree average: " + str(GT_res))
 print("successful # of mutations: ", difft_count)
+print("====================================")
+
+'''
+print("GUMTREE RESULTS BY MUTATION: ")
+GT_mut_sorted = sorted(GT_mut_res.items(), key = lambda x: x[1][len(x[1])-1])
+for mut in GT_mut_sorted:
+    print(mut[0], mut[1], " counts:", GT_mut_res_count[mut[0]])
+#pprint.pprint(GT_mut_sorted)
+
+print("====================================")
+print("DIFFTASTIC RESULTS BY MUTATION: ")
+difft_mut_sorted = sorted(difft_mut_res.items(), key = lambda x: x[1][len(x[1])-1])
+for mut in difft_mut_sorted:
+    print(mut[0], mut[1], " counts:", difft_mut_res_count[mut[0]])
+
+#pprint.pprint(difft_mut_sorted)
+'''
 
 
-plt.title("Results")
-#plt.figure(200)
+plt.plot([1,2,3,4,5] ,difft_res, label=("difft_avg"), color="blue")
 for mut in difft_mut_res:
     x = [i+0.985 for i in range(len(difft_mut_res[mut]))]
     plt.scatter(x, difft_mut_res[mut], color="blue", s=6)
 
-#plt.title("Difftastic Results")
-plt.plot([1,2,3,4,5] ,difft_res, label=("difft_avg"), color="blue")
-#lt.ylabel("edit actions")
-#plt.xlabel("# of mutations")
-#plt.xticks([1,2,3,4,5])
-#plt.yticks([0,5,10,15,20,25,30,35,40,45,50])
-#plt.yticks([0,5,10,15,20])
-#plt.legend()
-
-plt.minorticks_on()
-#plt.figure(300)
+plt.plot([1,2,3,4,5], GT_res, label ="GT_avg", color = "red")
 for mut in GT_mut_res:
     x = [i+1.015 for i in range(len(GT_mut_res[mut]))]
     plt.scatter(x, GT_mut_res[mut], color="red", s=6)
 
-#plt.title("Gumtree Results")
-plt.plot([1,2,3,4,5], GT_res, label ="GT_avg", color = "red")
+
+plt.title("Results")
 plt.ylabel("edit actions")
 plt.xlabel("# of mutations")
+plt.minorticks_on()
 plt.xticks([1,2,3,4,5])
-#plt.yticks([0,5,10,15,20,25,30,35,40,45,50])
-plt.yticks([0,5,10,15])
+#plt.yticks([0,5,10,15])
 plt.legend()
 plt.show()
