@@ -142,7 +142,7 @@ def calculate_diffs(contracts_path, file_ending, diff_tool):
         for i in range(len(futures)-1, -1, -1):
             if(futures[i].done()):
                 future = futures.pop(i)
-                future.result()
+                #future.result()
 
         print('Contracts done: ' + str(len(contracts) - len(futures)) + '/' + str(len(contracts)), end=('\r'))
     return res
