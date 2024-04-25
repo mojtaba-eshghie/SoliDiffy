@@ -19,7 +19,7 @@ mutation_operators = ["ACM", "AOR", "AVR", "BCRD", "BLR",
 
 def handle_input():
     if len(sys.argv) != 2:
-        raise Exception("Please provide number of mutations!")
+        raise Exception("Please provide the desired number of mutations!")
     
     n_mutations = int(sys.argv[1])
 
@@ -33,7 +33,6 @@ def run_sumo():
 def generate_mutants(output_path, n_mutants, op):
     file = open("../sumo/results/mutations.json")
     sumo_res = json.load(file)
-    print("mutating...")
     for c in sumo_res:
         print("Mutating contract: " + c)
         name = c.split('.')[0]
@@ -42,7 +41,7 @@ def generate_mutants(output_path, n_mutants, op):
         try:
             contract = open("../contracts/dataset/" +  c).read()
         except: 
-            print("file: " + c + " could not be parsed!")
+            print("file: " + c + " could not be opened!")
             continue
 
         output = Path(output_path + name + '/original/' + c)
@@ -58,21 +57,12 @@ def generate_mutants(output_path, n_mutants, op):
             try:
                 mutation = sumo_res[c][i]
             except:
-                print("Warning: there weren't enough mutants to mutate contract: " + name)
-                print("# of successful mutants for " + c + ": " + str(counter) + "/" + str(num_mutants))
-                print("--------------------------------------------------------")
                 break
             i += 1
 
             mut_start, mut_end = mutation["start"] + offset, mutation["end"] + offset
             new_content, old_content = mutation["replace"], mutation["original"]
             line_start, line_end = mutation["startLine"], mutation["endLine"]
-            # Multi-line mutations should not be a problem anymore
-            #if line_start != line_end:
-            #    if logging:
-            #        print("------------------------------------------")
-            #        print("Warning: Mutation spans over multiple lines. Mutation operator: " + mutation["operator"] + ". NOT Skipping mutation...")
-            #    continue
 
             if  all(used_characters[mut_start:mut_end]) and prev_start < mut_start:
                 if logging:
@@ -93,7 +83,7 @@ def generate_mutants(output_path, n_mutants, op):
                 output.write_text(contract)
             else:
                 continue
-            print("--------------------------------------------------------")
+        print("# of successful mutants for " + c + ": " + str(counter) + "/" + str(n_mutants))
        
 
 if __name__ ==  '__main__':

@@ -75,7 +75,6 @@ def get_diffts_data(filepath1, filepath2):
     #Have to keep track of the left hand and right hand side changes, so that no changes are double counted. Can probably by done in a much better way. 
     count = 0
     for li in diff["chunks"]:
-        #count += len(li)
         for line in li:
             used_changes = {}
              
@@ -102,7 +101,6 @@ def get_diffts_data(filepath1, filepath2):
                         for i in range(ch["start"], ch["end"]):
                             used_changes[str(i)] = 1
                         count += 1
-    
     return count
     
 #Gets the diffs between all mutants of a contract in a directory
