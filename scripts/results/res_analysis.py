@@ -9,16 +9,18 @@ gt_file = open("results-GT.pickle", "rb")
 
 difft = pickle.load(difft_file)
 GT = pickle.load(gt_file)
+num_mut = 10
 
-difft_res = [0] * 5
-difft_count = [0] * 5
+difft_res = [0] * num_mut
+difft_count = [0] * num_mut
 difft_mut_res = {} 
 difft_mut_res_count = {}
 
-GT_res = [0] * 5
-GT_count = [0] * 5
+GT_res = [0] * num_mut
+GT_count = [0] * num_mut
 GT_mut_res = {}
 GT_mut_res_count = {}
+
 
 "VUR" 
 "OLFD" 
@@ -62,8 +64,8 @@ for contract in difft:
                 
 
             if not mut in difft_mut_res.keys():
-                difft_mut_res[mut] = [0] * 5
-                difft_mut_res_count[mut] = [0] * 5
+                difft_mut_res[mut] = [0] * num_mut
+                difft_mut_res_count[mut] = [0] * num_mut
             difft_mut_res[mut][i] += difft[contract][i][mut]
             difft_mut_res_count[mut][i] += 1    
     #if mut_in:
@@ -85,11 +87,10 @@ for contract in GT:
                 GT_res[i] += GT[contract][i][mut][0]
                 
                 if not mut in GT_mut_res.keys():
-                    GT_mut_res[mut] = [0] * 5
-                    GT_mut_res_count[mut] = [0] * 5
+                    GT_mut_res[mut] = [0] * num_mut
+                    GT_mut_res_count[mut] = [0] * num_mut
                 GT_mut_res[mut][i] += GT[contract][i][mut][0]
                 GT_mut_res_count[mut][i] += 1
-
 
 GT_res = [i / j for i, j in zip(GT_res, GT_count)]  
 
@@ -105,7 +106,8 @@ print("Gumtree average: " + str(GT_res))
 print("successful # of mutations: ", difft_count)
 print("====================================")
 
-'''
+
+
 print("GUMTREE RESULTS BY MUTATION: ")
 GT_mut_sorted = sorted(GT_mut_res.items(), key = lambda x: x[1][len(x[1])-1])
 for mut in GT_mut_sorted:
@@ -119,14 +121,15 @@ for mut in difft_mut_sorted:
     print(mut[0], mut[1], " counts:", difft_mut_res_count[mut[0]])
 
 #pprint.pprint(difft_mut_sorted)
-'''
 
-plt.plot([1,2,3,4,5] ,difft_res, label=("difft_avg"), color="blue")
+
+
+plt.plot(range(10) ,difft_res, label=("difft_avg"), color="blue")
 for mut in difft_mut_res:
     x = [i+0.985 for i in range(len(difft_mut_res[mut]))]
     plt.scatter(x, difft_mut_res[mut], color="blue", s=6)
 
-plt.plot([1,2,3,4,5], GT_res, label ="GT_avg", color = "red")
+plt.plot(range(10), GT_res, label ="GT_avg", color = "red")
 for mut in GT_mut_res:
     x = [i+1.015 for i in range(len(GT_mut_res[mut]))]
     plt.scatter(x, GT_mut_res[mut], color="red", s=6)
@@ -136,7 +139,7 @@ plt.title("Results")
 plt.ylabel("edit actions")
 plt.xlabel("# of mutations")
 plt.minorticks_on()
-plt.xticks([1,2,3,4,5])
+plt.xticks(range(11))
 #plt.yticks([0,5,10,15])
 plt.legend()
 plt.show()
