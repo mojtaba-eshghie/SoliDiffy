@@ -61,7 +61,7 @@ def generate_mutants(output_path, n_mutants, op):
             i += 1
 
             mut_start, mut_end = mutation["start"] + offset, mutation["end"] + offset
-            new_content, old_content = mutation["replace"], mutation["original"]
+            new_content, old_content = str(mutation["replace"]), str(mutation["original"])
             line_start, line_end = mutation["startLine"], mutation["endLine"]
 
             if  all(used_characters[mut_start:mut_end]) and prev_start < mut_start:
