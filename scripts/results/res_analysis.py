@@ -1,7 +1,8 @@
 import pickle
 import pprint
+import csv
 import matplotlib.pyplot as plt
-import numpy
+import numpy as np
 
 
 def load_pickles():
@@ -11,7 +12,7 @@ def load_pickles():
     difft = pickle.load(difft_file)
     GT = pickle.load(gt_file)
 
-    return {"GT": GT, "difft": difft}
+    return {"GT": GT, "difft": difft, "GT2":GT2, "difft2": difft2}
 
 
 def setup(n_mut):
@@ -59,9 +60,9 @@ def analyze_diffs(diffs, res_dict, n_mut):
     res_dict["res"] = [i / j for i, j in zip( res_dict["res"],  res_dict["count"])]
 
     for mut in res_dict["mut_res"]:
-        for i in range(len(numpy.trim_zeros( res_dict["mut_res"][mut]))):
-            res_dict["mut_res"][mut] = numpy.trim_zeros( res_dict["mut_res"][mut])
-            res_dict["mut_count"][mut] = numpy.trim_zeros( res_dict["mut_count"][mut])
+        for i in range(len(np.trim_zeros( res_dict["mut_res"][mut]))):
+            res_dict["mut_res"][mut] = np.trim_zeros( res_dict["mut_res"][mut])
+            res_dict["mut_count"][mut] = np.trim_zeros( res_dict["mut_count"][mut])
             res_dict["mut_res"][mut][i] /= res_dict["mut_count"][mut][i]
 
 
@@ -84,6 +85,16 @@ def print_by_mutation(res_dict):
     print("=====================================================")
 
 
+def save_as_csv(filename):
+    with open(filename, 'w') as csvfile:
+        writer = csv.writer(csvfile, delimiter= " ", quotechar='|')
+        for key in GT_res_dict["mut_res"]:
+            writer.writerow([key] + GT_res_dict["mut_res"][key])
+        writer.writerow("           ")
+        for key in difft_res_dict["mut_res"]:
+            writer.writerow([key] + difft_res_dict["mut_res"][key])
+
+
 def scatter_with_avg_plot(GT, difft):
     plt.plot(range(10) ,difft["res"], label=("difft_avg"), color="blue")
     for mut in difft["mut_res"]:
@@ -95,7 +106,7 @@ def scatter_with_avg_plot(GT, difft):
         x = [i+1.015 for i in range(len(GT["mut_res"][mut]))]
         plt.scatter(x, GT["mut_res"][mut], color="red", s=6)
 
-    plt.title("Results")
+    plt.title("Average Edit Distance per Mutation and Tool")
     plt.ylabel("edit actions")
     plt.xlabel("# of mutations")
     plt.minorticks_on()
@@ -104,10 +115,50 @@ def scatter_with_avg_plot(GT, difft):
     plt.show()
 
 
+def box_plot(data, title):
+    d = [[] for _ in range(10)]
+    for key in data.keys():
+        for i in range(len(data[key])):
+            d[i].append(data[key][i])
+
+    fig1, ax1 = plt.subplots()
+    VP1 = ax1.boxplot(d, widths=0.5, patch_artist=True,
+                showmeans=False, showfliers=False,
+                medianprops={"color": "white", "linewidth": 0.5},
+                boxprops={"facecolor": "C0", "edgecolor": "white",
+                          "linewidth": 0.5},
+                whiskerprops={"color": "C0", "linewidth": 1.5},
+                capprops={"color": "C0", "linewidth": 1.5})
+    plt.title(title)
+    plt.show()
+
+
+def bar_by_mut_plot(data, title):
+    d = []
+    for key in data.keys():
+        if len(data[key]) == 10:
+            mut_res = [key, data[key][4], data[key][9]]
+            d.append(mut_res)
+        elif len(data[key]) >= 5:
+            mut_res = [key, data[key][4], 0]
+            d.append(mut_res)
+
+    x = [l[0] for l in d]
+    y5 = [l[1] for l in d]
+    y10 = [l[2] for l in d]
+
+    plt.bar(x = x, height = y10, color = 'b', label = "10 mutations")
+    plt.bar(x = x, height = y5, color = 'c', label = "5 mutations")
+    plt.title(title)
+    plt.legend()
+    plt.show()
+
+
+
 if __name__ ==  '__main__':
     num_mut = 10
     pickles = load_pickles()
-    #outliers = ["ORFD", "CBD", "OLFD", "CCD", "EHC", "EED", "CSC", "RSD", "ACM", "LSC", "ICM"]
+    #outliers = ["ICM", "ACM", "LSC", "CCD", "CBD", "ORFD", "OLFD", "CCD", "EHC"]
     #remove_mut_operators(pickles, outliers)
 
     GT_res_dict = setup(num_mut)
@@ -119,6 +170,13 @@ if __name__ ==  '__main__':
     #print_summary(GT_res_dict, difft_res_dict)
 
     #print_by_mutation(difft_res_dict)
-    print_by_mutation(GT_res_dict)
+    #print_by_mutation(GT_res_dict)
 
+
+    '''
     scatter_with_avg_plot(GT_res_dict, difft_res_dict)
+    box_plot(GT_res_dict["mut_res"], "Gumtree Edit Distance by Number of Mutations")
+    box_plot(difft_res_dict["mut_res"], "Difftastic Edit Distance by Number of Mutations")
+
+    bar_by_mut_plot(GT_res_dict["mut_res"], "Gumtree Edit Distance per Mutation Operator")
+    bar_by_mut_plot(difft_res_dict["mut_res"], "Difftastic Edit Distance per Mutation Operator")'''
