@@ -12,7 +12,7 @@ def load_pickles():
     difft = pickle.load(difft_file)
     GT = pickle.load(gt_file)
 
-    return {"GT": GT, "difft": difft, "GT2":GT2, "difft2": difft2}
+    return {"GT": GT, "difft": difft}
 
 
 def setup(n_mut):
@@ -173,10 +173,10 @@ if __name__ ==  '__main__':
     #print_by_mutation(GT_res_dict)
 
 
-    '''
+    
     scatter_with_avg_plot(GT_res_dict, difft_res_dict)
     box_plot(GT_res_dict["mut_res"], "Gumtree Edit Distance by Number of Mutations")
     box_plot(difft_res_dict["mut_res"], "Difftastic Edit Distance by Number of Mutations")
 
     bar_by_mut_plot(GT_res_dict["mut_res"], "Gumtree Edit Distance per Mutation Operator")
-    bar_by_mut_plot(difft_res_dict["mut_res"], "Difftastic Edit Distance per Mutation Operator")'''
+    bar_by_mut_plot(difft_res_dict["mut_res"], "Difftastic Edit Distance per Mutation Operator")
