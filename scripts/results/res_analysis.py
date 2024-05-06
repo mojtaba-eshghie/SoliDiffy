@@ -75,6 +75,14 @@ def print_summary(GT, difft):
     print("====================================")
 
 
+    plt.bar(x = [1,2,3,4,5,6,7,8,9,10], height = difft["count"], color = 'b')
+    plt.xticks([1,2,3,4,5,6,7,8,9,10])
+    plt.title("Number of Times X Amount of Mutations Could be Applied to Files")
+    plt.xlabel("Number of Mutations")
+    plt.ylabel("Successful Mutations")
+    plt.show()
+
+
 def print_by_mutation(res_dict):
     
     print("EDIT SCRIPT LENGTH BY MUTATION:")
@@ -167,10 +175,12 @@ if __name__ ==  '__main__':
     difft_res_dict = setup(num_mut)
     analyze_diffs(pickles["difft"], difft_res_dict, num_mut)
 
-    #print_summary(GT_res_dict, difft_res_dict)
+    print_summary(GT_res_dict, difft_res_dict)
 
     #print_by_mutation(difft_res_dict)
     #print_by_mutation(GT_res_dict)
+
+    
 
 
     
