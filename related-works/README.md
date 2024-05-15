@@ -1,5 +1,5 @@
 # List of Works Related to Solidity Code Differencing
-This list is an informal summary of all the papers we reviewed during the project. 
+This list is an informal summary of some of the papers we reviewed during the project. 
 
 ## [Fine-grained and Accurate Source Code Differencing](https://dl.acm.org/doi/10.1145/2642937.2642982)
 - Main GumTree paper.
