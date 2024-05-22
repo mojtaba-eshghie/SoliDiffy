@@ -2,6 +2,7 @@ import pickle
 import pprint
 import csv
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import numpy as np
 
 
@@ -123,44 +124,82 @@ def scatter_with_avg_plot(GT, difft):
     plt.show()
 
 
-def box_plot(data, title):
+def box_plot(data, offset):
+    box(data[0], offset, "r")
+    box(data[1], -offset, "b")
+
+    red_patch = mpatches.Patch(color="red", label="Gumtree")
+    blue_patch = mpatches.Patch(color="blue", label="difftastic")
+    plt.legend(handles=[red_patch, blue_patch])
+
+    x = [1,2,3,4,5,6,7,8,9,10]
+    plt.ylabel("edit actions")
+    plt.xlabel("# of mutations")
+    plt.xticks(x, labels=x)
+    plt.title("Edit Script Lengths for Gumtree and Difftastic")
+    plt.show()
+
+
+def box(data, offset, color):
     d = [[] for _ in range(10)]
     for key in data.keys():
         for i in range(len(data[key])):
             d[i].append(data[key][i])
+    
+    x = [x - offset for x in [1,2,3,4,5,6,7,8,9,10]]
+   
+    plt.boxplot(d, widths=0.25, patch_artist=True,
+        positions=x,
+        showmeans=False, showfliers=False,
+        medianprops={"color": "white", "linewidth": 0.25},
+        boxprops={"facecolor":  color, "edgecolor": "white",
+                  "linewidth": 0.2},
+        whiskerprops={"color": color, "linewidth": 0.25},
+        capprops={"color": color, "linewidth": 0.25})
 
-    fig1, ax1 = plt.subplots()
-    VP1 = ax1.boxplot(d, widths=0.5, patch_artist=True,
-                showmeans=False, showfliers=False,
-                medianprops={"color": "white", "linewidth": 0.5},
-                boxprops={"facecolor": "C0", "edgecolor": "white",
-                          "linewidth": 0.5},
-                whiskerprops={"color": "C0", "linewidth": 1.5},
-                capprops={"color": "C0", "linewidth": 1.5})
-    plt.title(title)
+
+def bar_by_mut_plot(data, offset):
+    
+    fig, ax = plt.subplots(layout='constrained')
+
+    bar(data[0], -offset, "r", ax)
+    
+    bar(data[1], offset, "b", ax)
+
+    red_patch = mpatches.Patch(color="r", label="Gumtree")
+    blue_patch = mpatches.Patch(color="b", label="difftastic")
+    plt.legend(handles=[red_patch, blue_patch])
+    
+    plt.title("Edit Distance per Mutation Operator (10 mutations)")
     plt.show()
 
-
-def bar_by_mut_plot(data, title):
+def bar(data, offset, color, subplot):  
     d = []
+    #oper = ["BLR", "HLR", "ILR", "SLR", "AVR"]
+    #oper = ["AOR", "BOR", "UORD", "ECS", "MCR", "VUR"]
+    #oper = ["CBD", "CSC", "EED", "EHC", "OLFD", "ORFD", "CCD"]
+    #oper = ["ACM", "LCS", "MOD", "MOI", "MOC", "MOR", "RVS", "SCEC"]
+    oper = ["BCRD","ER","SKI","SKD","DLR","DOD","ETR","FVR","GVR","OKD","RSD","SFR","TOR","VVR"]
+
     for key in data.keys():
-        if len(data[key]) == 10:
-            mut_res = [key, data[key][4], data[key][9]]
-            d.append(mut_res)
-        elif len(data[key]) >= 5:
-            mut_res = [key, data[key][4], 0]
-            d.append(mut_res)
+        if key in oper:
+            if len(data[key]) == 10:
+                mut_res = [key, round(data[key][9], 1)]
+                d.append(mut_res)
+            #elif len(data[key]) >= 5:
+            #    mut_res = [key, data[key][4], 0]
+            #    d.append(mut_res)
 
-    x = [l[0] for l in d]
-    y5 = [l[1] for l in d]
-    y10 = [l[2] for l in d]
+    d.sort()
+    x = np.arange(len(d))
+    xlabels = [l[0] for l in d]
+    #y5 = [l[1] for l in d]
+    y10 = [l[1] for l in d]
 
-    plt.bar(x = x, height = y10, color = 'b', label = "10 mutations")
-    plt.bar(x = x, height = y5, color = 'c', label = "5 mutations")
-    plt.title(title)
-    plt.legend()
-    plt.show()
-
+    bar = subplot.bar(x = x + offset, width =  0.25, height = y10, color = color)#, label = "10 mutations")
+    #subplot.bar(x = x + offset , width =  0.25, height = y5, color = 'c', label = "5 mutations")
+    subplot.bar_label(bar, padding=3)
+    subplot.set_xticks(x, xlabels)
 
 
 if __name__ ==  '__main__':
@@ -175,18 +214,14 @@ if __name__ ==  '__main__':
     difft_res_dict = setup(num_mut)
     analyze_diffs(pickles["difft"], difft_res_dict, num_mut)
 
-    print_summary(GT_res_dict, difft_res_dict)
+    #print_summary(GT_res_dict, difft_res_dict)
 
     #print_by_mutation(difft_res_dict)
     #print_by_mutation(GT_res_dict)
 
+    #scatter_with_avg_plot(GT_res_dict, difft_res_dict)
+    #box_plot((GT_res_dict["mut_res"], difft_res_dict["mut_res"]), 0.15)
+
+    bar_by_mut_plot((GT_res_dict["mut_res"], difft_res_dict["mut_res"]), 0.15)
     
-
-
     
-    scatter_with_avg_plot(GT_res_dict, difft_res_dict)
-    box_plot(GT_res_dict["mut_res"], "Gumtree Edit Distance by Number of Mutations")
-    box_plot(difft_res_dict["mut_res"], "Difftastic Edit Distance by Number of Mutations")
-
-    bar_by_mut_plot(GT_res_dict["mut_res"], "Gumtree Edit Distance per Mutation Operator")
-    bar_by_mut_plot(difft_res_dict["mut_res"], "Difftastic Edit Distance per Mutation Operator")
