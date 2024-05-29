@@ -158,47 +158,49 @@ def box(data, offset, color):
         capprops={"color": color, "linewidth": 0.25})
 
 
-def bar_by_mut_plot(data, offset):
+def bar_by_mut_plot(data, offset, oper):
     
     fig, ax = plt.subplots(layout='constrained')
 
-    bar(data[0], -offset, "r", ax)
-    
-    bar(data[1], offset, "b", ax)
+    bar(data[0], -offset, "r", ax, oper)
+    bar(data[1], offset, "b", ax, oper)
 
     red_patch = mpatches.Patch(color="r", label="Gumtree")
     blue_patch = mpatches.Patch(color="b", label="difftastic")
     plt.legend(handles=[red_patch, blue_patch])
     
-    plt.title("Edit Distance per Mutation Operator (10 mutations)")
+    plt.title("Edit Distance per Mutation Operator (5/10 mutations)")
     plt.show()
 
-def bar(data, offset, color, subplot):  
+def bar(data, offset, color, subplot, oper):  
     d = []
-    #oper = ["BLR", "HLR", "ILR", "SLR", "AVR"]
-    #oper = ["AOR", "BOR", "UORD", "ECS", "MCR", "VUR"]
-    #oper = ["CBD", "CSC", "EED", "EHC", "OLFD", "ORFD", "CCD"]
-    #oper = ["ACM", "LCS", "MOD", "MOI", "MOC", "MOR", "RVS", "SCEC"]
-    oper = ["BCRD","ER","SKI","SKD","DLR","DOD","ETR","FVR","GVR","OKD","RSD","SFR","TOR","VVR"]
-
     for key in data.keys():
         if key in oper:
             if len(data[key]) == 10:
-                mut_res = [key, round(data[key][9], 1)]
+                mut_res = [key, round(data[key][4], 1), round(data[key][9], 1)]
                 d.append(mut_res)
-            #elif len(data[key]) >= 5:
-            #    mut_res = [key, data[key][4], 0]
-            #    d.append(mut_res)
+            elif len(data[key]) >= 5:
+                mut_res = [key, round(data[key][4], 1), 0]
+                d.append(mut_res)
+            else:
+                mut_res = [key, 0, 0]
+                d.append(mut_res)
 
     d.sort()
     x = np.arange(len(d))
     xlabels = [l[0] for l in d]
-    #y5 = [l[1] for l in d]
-    y10 = [l[1] for l in d]
+    y5 = [l[1] for l in d]
+    y10 = [l[2] for l in d]
+
+    c2 = ''
+    if color == 'r':
+        c2 = 'orange'
+    else:
+        c2 = "c"
 
     bar = subplot.bar(x = x + offset, width =  0.25, height = y10, color = color)#, label = "10 mutations")
-    #subplot.bar(x = x + offset , width =  0.25, height = y5, color = 'c', label = "5 mutations")
-    subplot.bar_label(bar, padding=3)
+    subplot.bar(x = x + offset , width =  0.25, height = y5, color = c2) #, label = "5 mutations")
+    #subplot.bar_label(bar, padding=3)
     subplot.set_xticks(x, xlabels)
 
 
@@ -215,13 +217,20 @@ if __name__ ==  '__main__':
     analyze_diffs(pickles["difft"], difft_res_dict, num_mut)
 
     #print_summary(GT_res_dict, difft_res_dict)
-
     #print_by_mutation(difft_res_dict)
     #print_by_mutation(GT_res_dict)
 
     #scatter_with_avg_plot(GT_res_dict, difft_res_dict)
-    #box_plot((GT_res_dict["mut_res"], difft_res_dict["mut_res"]), 0.15)
+    box_plot((GT_res_dict["mut_res"], difft_res_dict["mut_res"]), 0.15)
 
-    bar_by_mut_plot((GT_res_dict["mut_res"], difft_res_dict["mut_res"]), 0.15)
+
+    opers = []
+    opers.append( ["BLR", "HLR", "ILR", "SLR", "AVR"])
+    opers.append( ["AOR", "BOR", "UORD", "DOD", "ECS", "MCR", "VUR", "ICM"])
+    opers.append( ["CBD", "CSC", "EED", "EHC", "OLFD", "ORFD", "CCD", "RSD"])
+    opers.append( ["ACM", "LCS", "MOD", "MOI", "MOC", "MOR", "RVS", "SCEC"])
+    opers.append( ["BCRD","ER","SKI","SKD","DLR","ETR","FVR","GVR","OKD","SFR","TOR","VVR"])
+    for oper in opers:
+        bar_by_mut_plot((GT_res_dict["mut_res"], difft_res_dict["mut_res"]), 0.15, oper)
     
     
