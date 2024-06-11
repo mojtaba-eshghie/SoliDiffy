@@ -58,3 +58,47 @@ PKD (Payable Keyword Deletion)
 SFR (SafeMath Function Replacement)
 TOR (Transaction Origin Replacement)
 VVR (Variable Visibility Replacement)
+
+
+
+
+ACM_AccessControlUpgradeable
+AOR_ApeVault
+AVR_ERC20Impl
+BLR_feed-factory
+BOR_ClonesMock
+CBD_ElementBridge
+CSC_FollowValidatorFollowModuleBase
+ECS_Splitter    
+EED_AlianaSale
+EHC_OwnableDelegateProxy      
+ETR_ReleasableToken 
+GVR_DurationGuard
+HLR_ChessSchedule
+ILR_AutoIncrementing
+LSC_PicklesInTheCitadel
+MOC_FraxMiddlemanGauge  
+MOD_Keep3rEscrow  
+MOI_PayableOwnable
+MOR_Superuser
+ORFD_AaveMarket
+SKI_AliumRouter
+SLR_DecreaseLiquidity
+UORD_ERC20BlacklistableMock
+VVR_LendingPoolStorage
+
+
+Number of mutants:
+
+1: 79880 
+2: 56206 
+3: 43155 
+4: 35761 
+5: 29852 
+6: 25674 
+7: 22171 
+8: 19557 
+9: 17372 
+10: 15499 
+
+total: 345127
