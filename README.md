@@ -1,4 +1,4 @@
-# solidity-code-diff
+# SoliDiffy: AST Differencing for Solidity Smart Contracts
 This is a project that aims to explore the topic of AST differencing for the programming language Solidity. We have looked at the state-of-the-art, and identied the need for more research in this area. We have extended the AST differencing tool Gumtree to be able to work with Soldidity. We then have performed a thorough evaluation where we compare our implementation with the popular diffing tool difftastic. 
 
 
