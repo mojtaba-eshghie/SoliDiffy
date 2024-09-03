@@ -1,0 +1,60 @@
+>>> PROJECT CONFIGURATION 
+
+Contracts directory: /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset
+Test directory: /home/mojtaba/solidiffy/SoliDiffy/sumo/sumotestdummy
+Build directory: /home/mojtaba/solidiffy/SoliDiffy/sumo/sumobuild
+
+>>> SELECTED FILES 
+
+Contracts to be mutated : (41):
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZapBSC.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZapCurve.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZapIn.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZapOut.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroCouponBond.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroEx.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroExExchangeWrapper.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroExGovernor.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroExOptimized.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroExOrderDataHandler.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroExOrderDataHandlerMock.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroExOrderLibrary.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroExOrderLibraryMock.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroHashesProvider.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroXExchangeInterface.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZeroxWrapper.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZipToken.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZipToken827.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAsset.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetAdjustable.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetBase.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetBurnable.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetBurnableBase.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetDetailed.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetEventsEmitterTest.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetMalleable.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetMintable.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetMintableBase.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetOwnable.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetOwnableBase.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetOwnableTest.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAssetTest.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZkAToken.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/Zombie.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZoneInterface.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZortCoin.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZrxAllowlist.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZRXSwapper.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZRXToken.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/ZrxVault.sol
+	- /home/mojtaba/solidiffy/SoliDiffy/contracts/small_dataset/Zunami.sol
+
+
+>>> GENERATED MUTANTS 
+
+
+>>> LOOKUP SUMMARY 
+
+0 mutation(s) found in 1.947 seconds 
+Generated mutations saved to sumo/results/results.csv and sumo/results/mutations.json 
+
