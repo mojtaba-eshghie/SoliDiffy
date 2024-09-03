@@ -1,1 +1,5 @@
 contracts/mutants.zip filter=lfs diff=lfs merge=lfs -text
+results/results_difft.jsonl filter=lfs diff=lfs merge=lfs -text
+results/results_GT.jsonl filter=lfs diff=lfs merge=lfs -text
+scripts/output-difft.log filter=lfs diff=lfs merge=lfs -text
+scripts/output-GT.log filter=lfs diff=lfs merge=lfs -text
