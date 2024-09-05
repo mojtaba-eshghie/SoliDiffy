@@ -1,7 +1,0 @@
-<tree type="assignment_expression" pos="11661" length="36">
-	<tree type="affectation_operator" pos="11688" length="1" label="="/>
-	<tree type="unary_expression" pos="11689" length="8">
-		<tree type="arithmetic_operator" pos="11689" length="1" label="-"/>
-		<tree type="identifier" pos="11691" length="6" label="amount"/>
-	</tree>
-</tree>

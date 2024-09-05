@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SoliDiffy: AST Differencing for Solidity Smart Contracts</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism CSS for Syntax Highlighting -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Line Numbers Plugin CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+<!-- JSON Language Support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+<!-- Line Numbers Plugin JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <!-- Add CSS for line numbers -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+
+    <style>
+      body {
+        background-color: #f8f9fa;
+        color: #343a40;
+      }
+      .cover-container {
+        max-width: 60%;
+        padding: 2rem 1rem;
+      }
+      .section-title {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #007bff;
+      }
+      .section-content {
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+      .results-box {
+        background-color: #e9ecef;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        margin-bottom: 1rem;
+      }
+      .form-inline .form-control {
+        width: 80%;
+        margin-right: 0.5rem;
+      }
+
+      .uniform-select {
+    width: 100%;
+    height: 38px; /* Standard height for form controls */
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 6px 12px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #495057;
+  }
+  .uniform-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  .btn-primary {
+    height: 38px; /* Match the height of the select boxes */
+  }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+  </head>
+
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="mb-4">
+        <h1 class="h3">SoliDiffy: AST Differencing for Solidity Smart Contracts</h1>
+      </header>
+
+      <main role="main" class="inner cover">
+        <div class="section-content">
+          <p>We address the need for precise and fine-grained code differencing tools in Solidity, the primary language for smart contracts on EVM-based blockchain platforms. Our extension of the Gumtree tool to support Solidity enables the generation of fine-grained edit scripts, which are crucial for tasks such as vulnerability detection and automated smart contract repair.</p>
+        </div>
+
+        <div class="section-title">Research Questions</div>
+        <div class="section-content">
+          <ul>
+            <li><strong>RQ1:</strong> How does SoliDiffy compare with the state-of-the-art Solidity AST differencing tool Difftastic for atomic changes?</li>
+            <li><strong>RQ2:</strong> How does SoliDiffy perform when there are multiple changes in the Solidity contract?</li>
+          </ul>
+        </div>
+
+        <div class="section-title">Results</div>
+        <div class="section-content">
+          <div class="results-box">
+            <strong>RQ1:</strong> Our adapted Gumtree tool handles Solidity-specific constructs effectively and maintains a linear relationship between edit distance and syntactic changes.
+          </div>
+          <div class="results-box">
+            <strong>RQ2:</strong> For multiple changes, the edit distance scales linearly, demonstrating robust performance in handling complex modifications in Solidity contracts.
+          </div>
+        </div>
+
+        <div class="section-title">Browsable Diffs</div>
+        
+        <form id="project-form" class="form-inline section-content">
+          
+          <div class="form-group mb-4">
+            <label for="project-select" class="sr-only">Select Project</label>
+            <select id="project-select" class="form-control" style="width: 100%;">
+              <option value="">Select a Solidity project</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-3 ml-3" id="project-details">
+            <!-- Additional fields populated based on project selection -->
+            <label for="project-detail" class="sr-only">Project Detail</label>
+            <select id="project-detail" class="form-control" style="width: 100%;">
+              <option value="">Severity of modifications</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-3 ml-3" id="mutation-operators-container">
+            <label for="mutation-operators" class="sr-only">Mutation Operators</label>
+            <select id="mutation-operators" class="form-control" style="width: 100%; height: 100px !important;">
+              <option value="">Select a mutation operator...</option>
+            </select>
+          </div>
+          
+          <button type="button" id="retrieve-button" class="btn btn-primary mb-2 ml-2">Show Edit Scripts</button>
+
+          
+
+        </form>
+
+
+        <div class="row mt-4">
+          <div class="col-md-6" style="text-align: left;">
+              <h5>SoliDiffy Edit Script</h5>
+              <pre id="soliDiffyScript" class="line-numbers" style="padding-left: 5px !important; font-size: 12px !important;"><code class="language-json"></code></pre>
+          </div>
+          <div class="col-md-6" style="text-align: left;">
+              <h5>Difftastic Edit Script</h5>
+              <pre id="difftasticScript" class="line-numbers" style="padding-left: 5px !important; font-size: 12px !important;"><code class="language-json"></code></pre>
+          </div>
+      </div>
+      
+      
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+       
+       
+
+        
+
+
+
+
+
+
+
+        <script>
+          $(document).ready(function() {
+            // Initialize Select2 for project selection with dynamic fetching
+            $('#project-select').select2({
+              placeholder: 'Select a project...',
+              minimumInputLength: 1,
+              ajax: {
+                transport: function (params, success, failure) {
+                  // Fetch projects from GitHub based on user input
+                  fetch('https://api.github.com/repos/mojtaba-eshghie/SoliDiffy/contents/results/contracts/mutants')
+                    .then(response => response.json())
+                    .then(data => {
+                      // Filter directories and apply user input filtering
+                      const filteredData = data
+                        .filter(item => item.type === 'dir' && item.name.toLowerCase().startsWith(params.data.term.toLowerCase()))
+                        .map(item => ({ id: item.name, text: item.name }));
+          
+                      success({ results: filteredData });
+                    })
+                    .catch(error => {
+                      console.error('Error fetching project names:', error);
+                      alert('Failed to load projects. Please try again later.');
+                      failure(error);
+                    });
+                },
+                processResults: function (data) {
+                  return { results: data.results };
+                },
+                delay: 250
+              }
+            });
+          
+            // Handle project selection
+            $('#project-select').on('select2:select', function(e) {
+              var projectId = e.params.data.id;
+          
+              // Fetch and populate the number of mutations dropdown
+              fetch(`https://api.github.com/repos/mojtaba-eshghie/SoliDiffy/contents/results/contracts/mutants/${projectId}`)
+                .then(response => response.json())
+                .then(data => {
+                  const mutations = data
+                    .filter(item => item.type === 'dir') // Ensure it's a directory (mutation numbers)
+                    .map(item => ({ id: item.name, text: item.name }));
+          
+                  // Show the mutations dropdown
+                  $('#project-details').show();
+                  $('#project-detail').empty().select2({
+                    data: mutations,
+                    placeholder: 'Select the number of mutations...'
+                  });
+          
+                  // Handle mutation selection to fetch mutation operators
+                  $('#project-detail').on('select2:select', function(e) {
+                    var mutationNumber = e.params.data.id;
+          
+                    // Fetch and populate the mutation operators dropdown
+                    fetch(`https://api.github.com/repos/mojtaba-eshghie/SoliDiffy/contents/results/contracts/mutants/${projectId}/${mutationNumber}`)
+                      .then(response => response.json())
+                      .then(data => {
+                        const mutationOperators = data
+                          .filter(item => item.type === 'dir') // Ensure it's a directory (mutation operators)
+                          .map(item => ({ id: item.name, text: item.name }));
+          
+                        // Show the mutation operators dropdown
+                        $('#mutation-operators-container').show();
+                        $('#mutation-operators').empty().select2({
+                          data: mutationOperators,
+                          placeholder: 'Select a mutation operator...'
+                        });
+                      })
+                      .catch(error => {
+                        console.error('Error fetching mutation operators:', error);
+                        alert('Failed to load mutation operators. Please try again later.');
+                      });
+                  });
+                })
+                .catch(error => {
+                  console.error('Error fetching mutations:', error);
+                  alert('Failed to load mutations. Please try again later.');
+                });
+            });
+          
+            // Initialize Select2 for mutation operators
+            $('#mutation-operators').select2({
+              placeholder: 'Select a mutation operator...',
+              minimumInputLength: 1
+            }).hide(); // Hide initially until mutation number is selected
+          
+            // Handle the click event on the Retrieve button
+            $('#retrieve-button').on('click', function() {
+              var projectId = $('#project-select').val();
+              var mutationNumber = $('#project-detail').val();
+              var operator = $('#mutation-operators').val();
+          
+              if (!projectId || !mutationNumber || !operator) {
+                alert('Please select a project, number of mutations, and a mutation operator.');
+                return;
+              }
+          
+              // Define paths for JSON files
+              var gtPath = `https://api.github.com/repos/mojtaba-eshghie/SoliDiffy/contents/results/contracts/mutants/${projectId}/${mutationNumber}/${operator}/diff_result_GT.json`;
+              var difftPath = `https://api.github.com/repos/mojtaba-eshghie/SoliDiffy/contents/results/contracts/mutants/${projectId}/${mutationNumber}/${operator}/diff_result_difft.json`;
+          
+              // Fetch and display SoliDiffy Edit Script
+              fetch(gtPath)
+                .then(response => response.json())
+                .then(data => {
+                  if (data.content) {
+                    const decodedContent = atob(data.content);
+                    $('#soliDiffyScript').text(decodedContent);
+                    Prism.highlightElement(document.querySelector('#soliDiffyScript'));
+                  } else {
+                    $('#soliDiffyScript').text('No SoliDiffy Edit Script available.');
+                  }
+                })
+                .catch(() => {
+                  $('#soliDiffyScript').text('Failed to load SoliDiffy Edit Script.');
+                });
+          
+              // Fetch and display Difftastic Edit Script
+              fetch(difftPath)
+                .then(response => response.json())
+                .then(data => {
+                  if (data.content) {
+                    const decodedContent = atob(data.content);
+                    $('#difftasticScript').text(decodedContent);
+                    Prism.highlightElement(document.querySelector('#difftasticScript'));
+                  } else {
+                    $('#difftasticScript').text('No Difftastic Edit Script available.');
+                  }
+                })
+                .catch(() => {
+                  $('#difftasticScript').text('Failed to load Difftastic Edit Script.');
+                });
+            });
+          });
+          </script>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </main>
+
+      <footer class="mt-auto">
+        <p class="text-muted">&copy; 2024 SoliDiffy. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
