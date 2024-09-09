@@ -85,29 +85,72 @@
 
       <main role="main" class="inner cover">
         <div class="section-content">
-          <p>We address the need for precise and fine-grained code differencing tools in Solidity, the primary language for smart contracts on EVM-based blockchain platforms. Our extension of the Gumtree tool to support Solidity enables the generation of fine-grained edit scripts, which are crucial for tasks such as vulnerability detection and automated smart contract repair.</p>
+          <p>We address the need for precise and fine-grained code differencing tools in Solidity, the primary language for smart contracts on EVM-based blockchain platforms. SoliDiffy generates fine-grained edit scripts, which are crucial for tasks such code reviews and automated smart contract repair.</p>
         </div>
 
         <div class="section-title">Research Questions</div>
         <div class="section-content">
           <ul>
-            <li><strong>RQ1:</strong> How does SoliDiffy compare with the state-of-the-art Solidity AST differencing tool Difftastic for atomic changes?</li>
-            <li><strong>RQ2:</strong> How does SoliDiffy perform when there are multiple changes in the Solidity contract?</li>
+            <li><strong>RQ1:</strong> How does the performance of SoliDiffy compare against Difftastic?</li>
+            <li><strong>RQ2:</strong> How do Solidity source code differencing tools perform when there are multiple changes in the Solidity source code?</li>
+            <li><strong>RQ3:</strong> How does the type of syntactic changes in file affect performance of Solidity code differencing?</li>
+            <li><strong>RQ4:</strong> What is the developer experience for understanding AST-differences produced by SoliDiffy and Difftastic?</li>
+            
           </ul>
         </div>
 
         <div class="section-title">Results</div>
         <div class="section-content">
           <div class="results-box">
-            <strong>RQ1:</strong> Our adapted Gumtree tool handles Solidity-specific constructs effectively and maintains a linear relationship between edit distance and syntactic changes.
+            <strong>RQ1:</strong> SoliDiffy consistently produces fewer changes across projects, reflecting its precise approach. Compared to Difftastic, which has a broader and less consistent range, SoliDiffy maintains lower edit distances, making it advantageous for minimizing transformations.
+            <div style="text-align: center;">
+              <img src="static/kde_plot-Mean-Edit-Script-Lengths-per-Project.svg" alt="RQ1 Results: KDE Plot of Mean Edit Script Lengths per Project" class="img-fluid mt-2">
+            </div>
           </div>
           <div class="results-box">
-            <strong>RQ2:</strong> For multiple changes, the edit distance scales linearly, demonstrating robust performance in handling complex modifications in Solidity contracts.
+            <strong>RQ2:</strong> The edit distance for both SoliDiffy and Difftastic scales linearly with the number of mutations applied, demonstrating that SoliDiffy can handle complex modifications effectively without compounding effects on performance.
+            <div style="text-align: center;">
+              <img src="static/edit-distances.png" alt="RQ2 Results: Edit Distances Comparison" class="img-fluid mt-3" style="width: 50% !important">
+            </div>
+            
+          </div>
+          <div class="results-box">
+            <strong>RQ3:</strong> The type of syntactic changes significantly impacts performance, with SoliDiffy showing superior results in handling code block mutations and Difftastic performing better with simpler text changes.
+            <div style="text-align: center;">
+              <img src="static/combined_edit_distances_horizontal_corrected-version.svg" alt="RQ3 Results: Combined Edit Distances" class="img-fluid mt-3" style="width: 50%;">
+        </div>
+              </div>
+          <div class="results-box">
+            <strong>RQ4:</strong> Developer feedback indicates that SoliDiffy's edit scripts provide a clearer representation of code changes in complex cases, although some simpler changes are more effectively captured by Difftastic’s textual approach.
+            <table class="table table-bordered mt-3">
+              <thead>
+                <tr>
+                  <th>Tool</th>
+                  <th>Clear Diffs</th>
+                  <th>More Complex Cases</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SoliDiffy</td>
+                  <td>Consistent</td>
+                  <td>Superior</td>
+                </tr>
+                <tr>
+                  <td>Difftastic</td>
+                  <td>Effective for Simple Changes</td>
+                  <td>Struggles with Complexity</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
+
         <div class="section-title">Browsable Diffs</div>
-        
+        <div style="text-align: left; padding-top: 10px; padding-bottom: 10px;">
+          You can browse through our diff pairs and their respective edit scripts generated by both SoliDiffy and Difftastic.
+        </div>
         <form id="project-form" class="form-inline section-content">
           
           <div class="form-group mb-4">
