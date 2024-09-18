@@ -6,3 +6,5 @@ results/
 contracts/
 results/*
 contracts/*
+node_modules/
+node_modules/*
