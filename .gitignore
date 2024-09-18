@@ -2,3 +2,7 @@ push_changes.py
 *.log
 */*/*.log
 */*.log
+results/
+contracts/
+results/*
+contracts/*
