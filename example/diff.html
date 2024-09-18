@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>GumTree</title><link type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/><style type="text/css">/*
+ * This file is part of GumTree.
+ *
+ * GumTree is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * GumTree is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with GumTree.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ *
+ * Copyright 2011-2015 Jean-R&eacute;my Falleri &lt;jr.falleri@gmail.com&gt;
+ * Copyright 2011-2015 Flor&eacute;al Morandat &lt;florealm@gmail.com&gt;
+ */
+
+.add {
+	border: 1px solid black;
+	background-color: MediumSeaGreen;
+}
+
+.del {
+	border: 1px solid black;
+	background-color: IndianRed;
+}
+
+.mv {
+	border: 1px solid black;
+	background-color: Plum;
+}
+
+.upd {
+	border: 1px solid black;
+	background-color: DarkOrange;
+	font-weight: bold;
+}
+
+.cupd {
+	font-weight: normal;
+	color: DimGray;
+}
+
+.selected {
+	background-color: Gold;
+}
+
+.marker {
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	margin: 0px;
+	padding: 0px;
+}
+
+.pre-scrollable {
+	margin: 0px;
+	padding: 0px;
+	font-size: 10pt;
+	color: black;
+	max-height: 90vh;
+	background-color: white;
+	border: 1px solid black;
+	font-family: &quot;Hack, Inconsolata&quot;, &quot;Consolas&quot;, &quot;Liberation Sans Regular&quot;, &quot;DejaVu Sans Mono&quot;, monospace;
+}
+
+.tooltip-inner {
+    max-width: none;
+}
+</style><script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script><script type="text/javascript">/*<![CDATA[*//*
+ * This file is part of GumTree.
+ *
+ * GumTree is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * GumTree is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with GumTree.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Copyright 2011-2015 Jean-Rémy Falleri <jr.falleri@gmail.com>
+ * Copyright 2011-2015 Floréal Morandat <florealm@gmail.com>
+ */
+
+$(function(){
+    let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl)
+    })
+
+    $("body").keypress(function (event) {
+        switch (event.which) {
+            case 116:
+                $('html, body').animate({scrollTop: 0}, 100);
+                break;
+            case 98:
+                $("html, body").animate({ scrollTop: $(document).height() }, 100);
+                break;
+            case 113:
+                window.location = "/quit";
+                break;
+            case 108:
+                window.location = "/list";
+                break;
+        }
+    });
+});
+/*]]>*/</script><script type="text/javascript">/*<![CDATA[*//*
+ * This file is part of GumTree.
+ *
+ * GumTree is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * GumTree is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with GumTree.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Copyright 2011-2015 Jean-Rémy Falleri <jr.falleri@gmail.com>
+ * Copyright 2011-2015 Floréal Morandat <florealm@gmail.com>
+ */
+
+currentMapping = 0;
+
+if (typeof String.prototype.startsWith != 'function') {
+  String.prototype.startsWith = function (str){
+    return this.slice(0, str.length) == str;
+  };
+}
+
+function getMappedElement(eltId) {
+	if (eltId.startsWith("move-src")) {
+		return eltId.replace("src","dst");  	 	
+  	}
+  	else {
+  		return eltId.replace("dst","src");
+  	}
+}
+
+function nextMapping() {
+	if (currentMapping == 0) {
+		currentMapping = 1;
+		return "#mapping-" + currentMapping.toString();
+	} else {
+		currentMapping++;
+		
+		if ($("#mapping-" + currentMapping.toString()).length > 0) {
+			return "#mapping-" + currentMapping.toString();
+		} else {
+			currentMapping = 1;
+			return "#mapping-" + currentMapping.toString();		
+		}		
+	}
+}
+
+function isSrc(eltId) {
+	return eltId.startsWith("move-src");
+}
+
+$(function() {
+    $("body").keypress(function (event) {
+        switch(event.which) {
+            case 110:
+                const mapping = $(nextMapping());
+                const pre = mapping.closest("pre");
+                pre.animate({scrollTop: pre.scrollTop() + mapping.position().top - 200}, 100);
+                break;
+        }
+    });
+
+    // highlight
+    $("span.mv.token, span.token.upd").click(function(event) {
+        if ($(this).hasClass("selected")) {
+            $("span.mv.token, span.token.upd").removeClass("selected");
+        } else {
+            $("span.mv.token, span.token.upd").removeClass("selected");
+            const refElt = $("#" + getMappedElement($(this).attr("id")));
+            $(this).addClass("selected");
+            refElt.addClass("selected");
+            const pre = refElt.closest("pre");
+            console.log(pre);
+            pre.animate({scrollTop: pre.scrollTop() + refElt.position().top - 200}, 100);
+        }
+        event.stopPropagation();
+    });
+    
+    $("span.add.token, span.token.del").click(function(event) {
+        $("span.mv.token, span.token.upd").removeClass("selected");
+        event.stopPropagation();
+    });
+
+    // tooltip
+    $("span.token").hover(
+    	function (event) {
+    		$(this).tooltip('show');
+    		event.stopPropagation();
+    	},
+    	function (event) {
+    		$(this).tooltip('hide');
+    		event.stopPropagation();
+    	}
+    );
+});
+/*]]>*/</script></head><body><div class="container-fluid"><div class="row"><div class="col"><div class="btn-toolbar justify-content-end"><div class="btn-group mr-2"><button class="btn btn-primary btn-sm" id="legend" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-html="true" data-bs-content="<span class=&quot;del&quot;>&nbsp;&nbsp;</span> deleted<br><span class=&quot;add&quot;>&nbsp;&nbsp;</span> added<br><span class=&quot;mv&quot;>&nbsp;&nbsp;</span> moved<br><span class=&quot;upd&quot;>&nbsp;&nbsp;</span> updated<br>">Legend</button><button class="btn btn-primary btn-sm" id="shortcuts" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-html="true" data-bs-content="<b>q</b> quit<br><b>l</b> list<br><b>n</b> next<br><b>t</b> top<br><b>b</b> bottom">Shortcuts</button></div><div class="btn-group"><a class="btn btn-default btn-sm btn-primary" href="/list">Back</a><a class="btn btn-default btn-sm btn-danger" href="/quit">Quit</a></div></div></div></div><div class="row"><div class="col-6"><h5>original.sol</h5><pre class="pre-scrollable">contract SimpleStorage {
+    uint256 public <span class="marker" id="mapping-1"></span><span class="token upd" id="move-src-1" data-title="state_variable_declaration/identifier"><span class="cupd">num</span></span>;
+
+    function set(uint256 <span class="marker" id="mapping-2"></span><span class="token upd" id="move-src-2" data-title="parameter/identifier"><span class="cupd">_num</span></span>) public {
+        <span class="marker" id="mapping-3"></span><span class="token upd" id="move-src-3" data-title="assignment_expression/identifier"><span class="cupd">num</span></span> = <span class="marker" id="mapping-4"></span><span class="token upd" id="move-src-4" data-title="assignment_expression/identifier"><span class="cupd">_num</span></span>;
+    }
+
+    function get() public view returns (uint256) {
+        return <span class="marker" id="mapping-5"></span><span class="token upd" id="move-src-5" data-title="return_statement/identifier"><span class="cupd">num</span></span>;
+    }
+}
+</pre></div><div class="col-6"><h5>modified.sol</h5><pre class="pre-scrollable">contract SimpleStorage {
+    uint256 public <span class="marker" id="mapping-6"></span><span class="token upd" id="move-dst-1" data-title="state_variable_declaration/identifier"><span class="cupd">num</span>ber</span>;
+
+    function set(uint256 <span class="marker" id="mapping-7"></span><span class="token upd" id="move-dst-2" data-title="parameter/identifier"><span class="cupd">_num</span>ber</span>) public {
+        <span class="marker" id="mapping-8"></span><span class="token upd" id="move-dst-3" data-title="assignment_expression/identifier"><span class="cupd">num</span>ber</span> = <span class="marker" id="mapping-9"></span><span class="token upd" id="move-dst-4" data-title="assignment_expression/identifier"><span class="cupd">_num</span>ber</span>;
+    }
+
+    function get() public view returns (uint256) {
+        return <span class="marker" id="mapping-10"></span><span class="token upd" id="move-dst-5" data-title="return_statement/identifier"><span class="cupd">num</span>ber</span>;
+    }
+}
+</pre></div></div></div></body></html>

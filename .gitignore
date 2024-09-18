@@ -1,1 +1,4 @@
 push_changes.py
+*.log
+*/*/*.log
+*/*.log
