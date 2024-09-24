@@ -31,6 +31,21 @@ RUN pip install tree-sitter==0.20.4
 
 # Initialize and update git submodules
 #RUN git submodule init --recursive && git submodule update --recursive
+#RUN git submodule update --init --recursive
+
+# Override submodule URLs to use HTTPS
+RUN git config --file .gitmodules submodule.gumtree.url https://github.com/ViktorAryd/gumtree.git
+RUN git config --file .gitmodules submodule.tree-sitter-parser.url https://github.com/ViktorAryd/tree-sitter-parser.git
+RUN git config --file tree-sitter-parser/.gitmodules submodule.tree-sitter-solidity.url https://github.com/JoranHonig/tree-sitter-solidity.git
+
+
+
+# Clean existing submodule directories if they exist
+RUN rm -rf gumtree tree-sitter-parser
+
+
+# Initialize and update git submodules with the new URLs
+RUN git submodule sync
 RUN git submodule update --init --recursive
 
 # Initialize and update submodules for tree-sitter-parser
