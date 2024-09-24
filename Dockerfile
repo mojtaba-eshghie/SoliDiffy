@@ -30,7 +30,8 @@ RUN pip install --upgrade pip
 RUN pip install tree-sitter==0.20.4
 
 # Initialize and update git submodules
-RUN git submodule init && git submodule update
+#RUN git submodule init --recursive && git submodule update --recursive
+RUN git submodule update --init --recursive
 
 # Initialize and update submodules for tree-sitter-parser
 WORKDIR /app/SoliDiffy/tree-sitter-parser

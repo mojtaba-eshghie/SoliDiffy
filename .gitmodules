@@ -1,6 +1,6 @@
-[submodule "tree-sitter-parser"]
-	path = tree-sitter-parser
-	url = git@github.com:ViktorAryd/tree-sitter-parser.git
 [submodule "gumtree"]
-	path = gumtree
-	url = git@github.com:ViktorAryd/gumtree.git
+    path = gumtree
+    url = https://github.com/ViktorAryd/gumtree.git
+[submodule "tree-sitter-parser"]
+    path = tree-sitter-parser
+    url = https://github.com/ViktorAryd/tree-sitter-parser.git
