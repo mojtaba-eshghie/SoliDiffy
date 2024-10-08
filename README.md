@@ -15,7 +15,7 @@ You need to have [Docker](https://docs.docker.com/get-docker/)
 First, clone the SoliDiffy repository:
 
 ```bash
-git clone https://github.com/mojtaba-eshghie/SoliDiffy.git
+git clone https://github.com/mojtaba-eshghie/SoliDiffy
 cd SoliDiffy
 ```
 
