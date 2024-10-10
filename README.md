@@ -1,5 +1,7 @@
 # SoliDiffy: AST Differencing for Solidity Smart Contracts
 
+SoliDiffy is a tool for performing AST differencing of two Solidity files. It produces an high level edit script about the AST differences.
+
 ## Viewing the Results
 The results of our extensive experiments are available at [here](https://github.com/SoliDiffy/SoliDiffy-results).
 
