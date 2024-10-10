@@ -25,7 +25,7 @@ cd SoliDiffy
 Build the Docker image using the provided `Dockerfile`. This step will compile necessary dependencies, including the Tree-sitter parser, to speed up future runs.
 
 ```bash
-sudo docker build -t solidiffy-replication .
+docker build -t solidiffy-replication .
 ```
 
 This will create a Docker image named `solidiffy-replication` that includes everything you need to run SoliDiffy.
@@ -35,7 +35,7 @@ This will create a Docker image named `solidiffy-replication` that includes ever
 To run SoliDiffy and compare two Solidity files, use the following Docker command. The files must be located on your host machine, and Docker will mount them into the container.
 
 ```bash
-sudo docker run --rm \
+docker run --rm \
   -v /example/original.sol:/app/original.sol \
   -v /example/modified.sol:/app/modified.sol \
   solidiffy-replication textdiff /app/original.sol /app/modified.sol
@@ -44,8 +44,8 @@ sudo docker run --rm \
 This will run the diff and output the differences between the two Solidity files.
 
 ##### Explanation:
-- **`/path/to/original.sol`**: Path to your original Solidity file on your local machine.
-- **`/path/to/modified.sol`**: Path to your modified Solidity file on your local machine.
+- **`/example/original.sol`**: Path to your original Solidity file on your local machine.
+- **`/example/modified.sol`**: Path to your modified Solidity file on your local machine.
 - **`solidiffy-replication`**: The Docker image you built.
 - **`textdiff`**: SoliDiffy to run the diff comparison between the two files.
 
