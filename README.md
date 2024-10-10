@@ -36,8 +36,8 @@ To run SoliDiffy and compare two Solidity files, use the following Docker comman
 
 ```bash
 sudo docker run --rm \
-  -v /path/to/original.sol:/app/original.sol \
-  -v /path/to/modified.sol:/app/modified.sol \
+  -v /example/original.sol:/app/original.sol \
+  -v /example/modified.sol:/app/modified.sol \
   solidiffy-replication textdiff /app/original.sol /app/modified.sol
 ```
 
