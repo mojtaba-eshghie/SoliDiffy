@@ -44,8 +44,8 @@ docker run --rm \
 This will run the diff and output the differences between the two Solidity files.
 
 ##### Explanation:
-- **`/example/original.sol`**: Path to your original Solidity file on your local machine.
-- **`/example/modified.sol`**: Path to your modified Solidity file on your local machine.
+- **`example/original.sol`**: Path to your original Solidity file on your local machine.
+- **`example/modified.sol`**: Path to your modified Solidity file on your local machine.
 - **`solidiffy-replication`**: The Docker image you built.
 - **`textdiff`**: SoliDiffy to run the diff comparison between the two files.
 
