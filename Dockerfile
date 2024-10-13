@@ -21,9 +21,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git build-essential && rm -rf /var/lib/apt/lists/*
 
 
-# Clone the SoliDiffy repository
-RUN apt-get install -y git
-RUN git clone https://anonymous.4open.science/r/SoliDiffy-EF2B
+COPY . /app/SoliDiffy
 
 # Change directory to SoliDiffy
 WORKDIR /app/SoliDiffy
