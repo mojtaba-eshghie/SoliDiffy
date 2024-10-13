@@ -3,7 +3,7 @@ FROM python:3.10.12-slim
 
 # Install Java (OpenJDK 17) and necessary build tools
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk curl unzip && \
+    apt-get install -y openjdk-17-jdk curl unzip git && \
     apt-get clean
 
 # Set environment variables for Java
