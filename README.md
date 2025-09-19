@@ -68,3 +68,17 @@ This dataset contains the output of the SoliDiffy tool after running it on the m
 - **Location**: [Differencing Results Dataset](https://github.com/SoliDiffy/SoliDiffyResults/tree/main/results/contracts/mutants)
 - **Details**: Each entry in this dataset includes detailed diff results including the time it took to calculate the edit script and edit script itself.
 
+## Citing SoliDiffy
+Please use the following bibtex entry if citing us in your reports/papers:
+```bibtex
+@misc{SoliDiffy,
+      title={SoliDiffy: AST Differencing for Solidity Smart Contracts}, 
+      author={Mojtaba Eshghie and Viktor Åryd and Cyrille Artho and Martin Monperrus},
+      year={2025},
+      eprint={2411.07718},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2411.07718}, 
+}
+```
+
